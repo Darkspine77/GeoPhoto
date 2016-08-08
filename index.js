@@ -13,7 +13,7 @@
 
     var database = firebase.database().ref()
     console.log("storage: " + database);
-    var storage = database.storage();
+    var storage = database.storage;
     console.log("storage: " + storage);
 
 
