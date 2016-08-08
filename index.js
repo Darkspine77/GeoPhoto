@@ -2,6 +2,16 @@
       // prompted by your browser. If you see the error "The Geolocation service
       // failed.", it means you probably did not give permission for the browser to
       // locate you.
+      // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAonQbZOHwhSRXNzcNBaI2cch0MKs-SSVk",
+      authDomain: "locus-7167b.firebaseapp.com",
+      databaseURL: "https://locus-7167b.firebaseio.com",
+     storageBucket: "",
+    };
+    firebase.initializeApp(config);
+
+
 
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
