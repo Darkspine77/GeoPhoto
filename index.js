@@ -3,6 +3,7 @@
       // failed.", it means you probably did not give permission for the browser to
       // locate you.
       // Initialize Firebase
+    var account = [] 
     var config = {
       apiKey: "AIzaSyAonQbZOHwhSRXNzcNBaI2cch0MKs-SSVk",
       authDomain: "locus-7167b.firebaseapp.com",
@@ -11,8 +12,13 @@
     };
     firebase.initializeApp(config);
 
-    var database = firebase.database()
-    console.log(database);
+    var database = firebase.database().ref()
+    database.on('value',function(dataRow){
+  //getting raw values
+    var row = dataRow.val();
+    //adding to the div
+    console.log(row.Accounts);
+})
 
 
 
