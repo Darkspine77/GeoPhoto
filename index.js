@@ -12,7 +12,7 @@
     firebase.initializeApp(config);
 
     var database = firebase.database()
-    console.log("storage: " + database);
+    console.log(database);
 
 
 
