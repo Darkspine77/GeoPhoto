@@ -13,23 +13,39 @@
     firebase.initializeApp(config);
 
     var database = firebase.database().ref()
-    database.on('value',function(dataRow){
-  //getting raw values
-    var row = dataRow.val();
-    //adding to the div
-    console.log(row.Accounts);
-})
 
-
-
-      function next(){
+//     database.on('value',function(dataRow){
+//   //getting raw values
+//     var row = dataRow.val();
+//     //adding to the div
+//     console.log(row);
+// }
+      function signup(){
         var Username = $("#username").val();
         var Password = $("#password").val();
-        database.push({
-          'INFO':grabUI(),
-          'DATA':data
+        firebase.database().ref('users/' + Username).set({
+          'Username': Username,
+          'Password': Password
         });
+        alert("Account created under username: " + Username)
       }
+
+      function login(){
+        var Username = $("#username").val();
+        var Password = $("#password").val();
+        var passCheck = null
+        firebase.database().ref('users/' + Username).on('value', function(snapshot) {
+            if(snapshot.val() != null){
+              console.log('passed')
+            passCheck = snapshot.val().Password
+          } else {
+            alert("That account has not been created yet")
+          }
+        }); 
+        if(passCheck = Password && passCheck != null){
+          alert("Welcome back " + Username);
+        }
+    }
 
 
       function initMap() {
