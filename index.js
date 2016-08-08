@@ -11,7 +11,7 @@
     };
     firebase.initializeApp(config);
 
-    var database = firebase.database().ref()
+    var database = firebase.database.Query
     console.log("storage: " + database);
     var storage = database.storage;
     console.log("storage: " + storage);
