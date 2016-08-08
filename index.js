@@ -36,7 +36,6 @@
         var passCheck = null
         firebase.database().ref('users/' + Username).on('value', function(snapshot) {
             if(snapshot.val() != null){
-              console.log('passed')
             passCheck = snapshot.val().Password
           } else {
             alert("That account has not been created yet")
