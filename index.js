@@ -11,6 +11,20 @@
     };
     firebase.initializeApp(config);
 
+    var database = firebase.database().ref()
+    var storage = database.storage();
+    console.log(storage)
+
+
+
+      function next(){
+        var Username = $("#username").val();
+        var Password = $("#password").val();
+        database.push({
+          'INFO':grabUI(),
+          'DATA':data
+        });
+      }
 
 
       function initMap() {
