@@ -7,13 +7,14 @@
       apiKey: "AIzaSyAonQbZOHwhSRXNzcNBaI2cch0MKs-SSVk",
       authDomain: "locus-7167b.firebaseapp.com",
       databaseURL: "https://locus-7167b.firebaseio.com",
-     storageBucket: "",
+     storageBucket: "locus-7167b.appspot.com",
     };
     firebase.initializeApp(config);
 
     var database = firebase.database().ref()
+    console.log("storage: " + database);
     var storage = database.storage();
-    console.log(storage)
+    console.log("storage: " + storage);
 
 
 
