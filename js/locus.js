@@ -7,7 +7,7 @@
     
         lat = position.coords.latitude;
         lon = position.coords.longitude;
-        coords = lat + "," + long
+        coords = lat + "," + lon
     });
    
 
