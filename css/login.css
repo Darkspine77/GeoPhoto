@@ -63,3 +63,16 @@ body {
    display: block;
    margin:0 auto; 
 }
+
+.button2 {
+  cursor: pointer;
+  position: absolute;
+  top:50%;
+  left:60%;
+}
+.button3 {
+  cursor: pointer;
+  position:absolute;
+  top:50%;
+  left:38%;
+}

@@ -4,6 +4,9 @@
       // locate you.
       // Initialize Firebase
     
+    var newURL = "https://picjumbo.imgix.net/DJI_0142.jpg?q=40&w=1650&sharp=30"
+    var prevURL ="https://picjumbo.imgix.net/HNCK3505.jpg?q=40&w=1650&sharp=30"
+    
     var config = {
       apiKey: "AIzaSyAonQbZOHwhSRXNzcNBaI2cch0MKs-SSVk",
       authDomain: "locus-7167b.firebaseapp.com",
@@ -102,3 +105,24 @@
                               'Error: The Geolocation service failed.' :
                               'Error: Your browser doesn\'t support geolocation.');
       }
+
+          function nxtImg(){
+      $(body).css("background-image",'url('+newURL);
+      if (newURL == "https://picjumbo.imgix.net/DJI_0142.jpg?q=40&w=1650&sharp=30"){
+        newURL = "https://picjumbo.imgix.net/HNCK3054.jpg?q=40&w=1650&sharp=30"
+        prevURL = "https://picjumbo.imgix.net/HNCK3505.jpg?q=40&w=1650&sharp=30"
+      }
+      if (newURL == "https://picjumbo.imgix.net/HNCK3054.jpg?q=40&w=1650&sharp=30"){
+        prevURL = "https://picjumbo.imgix.net/DJI_0142.jpg?q=40&w=1650&sharp=30"
+      }
+  }  
+  function backImg(){
+    $(body).css("background-image",'url('+prevURL);
+    if (prevURL == "https://picjumbo.imgix.net/DJI_0142.jpg?q=40&w=1650&sharp=30"){
+        prevURL = "https://picjumbo.imgix.net/HNCK3505.jpg?q=40&w=1650&sharp=30"
+    if (prevURL == "https://picjumbo.imgix.net/HNCK3505.jpg?q=40&w=1650&sharp=30"){
+        newURL = "https://picjumbo.imgix.net/DJI_0142.jpg?q=40&w=1650&sharp=30"
+    }
+    }
+    
+}
