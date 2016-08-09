@@ -31,7 +31,8 @@ function upload() {
 
     database.push({
         'name':name,
-        'locus': lon,
+        'longitude': lon,
+        'latitude': lat,
         'image': img,
         'like': like
     });
@@ -46,7 +47,7 @@ database.on('child_added',function(dataRow){
   	var row = dataRow.val();
   	//adding to the div
     $(".locus").append(
-        '<div class="photo"><div class="info"><h2 class="user">' + row.name + '|' + row.locus +
+        '<div class="photo"><div class="info"><h2 class="user">' + row.name + '|' + row.latitude + row.longitude +
         '</h2><button type="button" name="button" class="button">like</button><h2 class="likes">' + row.like +
         '</h2></div><img src="' + row.image + '" class="width"/></div>'
     );
