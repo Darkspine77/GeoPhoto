@@ -3,14 +3,17 @@
     <head>
         <meta charset="utf-8">
         <title>Locus</title>
+        <link rel="stylesheet" href="css/locus.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans|Scope+One" rel="stylesheet">
         <!-- <link rel="icon" href="pokeball.png"> -->
     </head>
     <body>
         <div class="header">
             <h1>Locus</h1>
+            <img src="images/plus.png" id="plus"/>
         </div>
         <div class="upload">
+            <img src="images/cancel.png" id="cancel"/>
             <h2 id="mar">Share your best Picture</h2>
             Name:
             <input type="text" id="name"><br>
@@ -34,5 +37,6 @@
         firebase.initializeApp(config);
         </script>
         <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+        <script src='js/locus.js'></script>
     </body>
 </html>
