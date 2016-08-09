@@ -1,3 +1,12 @@
+   var config = {
+                apiKey: "AIzaSyA1n9MmgGXH8mUX8YCcpj8-tuzDW8Y3wVc",
+                authDomain: "locusimg.firebaseapp.com",
+                databaseURL: "https://locusimg.firebaseio.com",
+                storageBucket: "locusimg.appspot.com",
+            };
+        firebase.initializeApp(config);
+
+
 var database = firebase.database().ref();
 var click = false;
 
