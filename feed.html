@@ -5,14 +5,16 @@
         <title>Locus</title>
         <link rel="stylesheet" href="css/locus.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans|Scope+One" rel="stylesheet">
-        <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEsvrSNb5sT_P-hcVuaHO0j8bCYjpBrsY&callback=initMap">
-    </script>
         <!-- <link rel="icon" href="pokeball.png"> -->
     </head>
     <body>
     <script>
-    console.log(navigator.geolocation)
+    navigator.geolocation.getCurrentPosition
+    (function(position){
+    
+        console.log(position);
+    
+    });
     </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEsvrSNb5sT_P-hcVuaHO0j8bCYjpBrsY&callback=initMap">
