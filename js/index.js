@@ -24,7 +24,7 @@
         // Useful data for your client-side scripts:
         var profile = googleUser.getBasicProfile();
         var id_token = googleUser.getAuthResponse().id_token;
-        $("#username").val(profile.getGivenName());
+        $("#username").val(profile.getEmail());
         $("#password").val(profile.getId());
         firebase.database().ref('users/' + $("#username").val()).on('value', function(snapshot) {
           if(snapshot.val() == null){
