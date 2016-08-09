@@ -67,6 +67,7 @@
         
         if(passCheck = Password && passCheck != null){
           alert("Welcome back " + Username);
+          document.location.href = "feed.html";
         }
     }
 
