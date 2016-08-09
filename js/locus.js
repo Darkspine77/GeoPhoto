@@ -1,3 +1,16 @@
+  var lat; 
+  var lon;
+  var coords = ""
+
+  navigator.geolocation.getCurrentPosition
+    (function(position){
+    
+        lat = position.coords.latitude;
+        lon = position.coords.longitude;
+        coords = lat + "," + lon
+    });
+   
+
 
    var config = {
                 apiKey: "AIzaSyA1n9MmgGXH8mUX8YCcpj8-tuzDW8Y3wVc",
@@ -13,13 +26,12 @@ var click = false;
 
 function upload() {
     var name = $('#name').val();
-    var locus = $('#geo').val();
     var img = $('#file').val();
     var like = 0;
 
     database.push({
         'name':name,
-        'locus':locus,
+        'locus': coords
         'image': img,
         'like': like
     });
