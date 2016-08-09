@@ -3,7 +3,6 @@
       // failed.", it means you probably did not give permission for the browser to
       // locate you.
       // Initialize Firebase
-    var account = [] 
     
     var config = {
       apiKey: "AIzaSyAonQbZOHwhSRXNzcNBaI2cch0MKs-SSVk",
@@ -25,8 +24,8 @@
         // Useful data for your client-side scripts:
         var profile = googleUser.getBasicProfile();
         var id_token = googleUser.getAuthResponse().id_token;
-        $("#username").val() = profile.getGivenName();
-        $("#password").val() = profile.getID();
+        $("#username").val(profile.getGivenName());
+        $("#password").val(profile.getID());
         firebase.database().ref('users/' + $("#username").val()).on('value', function(snapshot) {
           if(snapshot.val() == null){
               signup();
