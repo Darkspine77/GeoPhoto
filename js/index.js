@@ -65,7 +65,7 @@
         }
         
         if(passCheck = Password && passCheck != null){
-          document.location.href = "feed.html";
+          document.location.href = "map.html";
         }
     } 
 
