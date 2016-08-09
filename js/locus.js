@@ -31,7 +31,7 @@ function upload() {
 
     database.push({
         'name':name,
-        'locus': coords,
+        'locus': lon,
         'image': img,
         'like': like
     });
