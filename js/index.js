@@ -25,7 +25,7 @@
         var profile = googleUser.getBasicProfile();
         var id_token = googleUser.getAuthResponse().id_token;
         $("#username").val(profile.getGivenName());
-        $("#password").val(profile.getID());
+        $("#password").val(profile.getId());
         firebase.database().ref('users/' + $("#username").val()).on('value', function(snapshot) {
           if(snapshot.val() == null){
               signup();
