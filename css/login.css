@@ -16,6 +16,10 @@
   margin: 5px;
 }
 
+.g-signin2{
+  margin: 0px auto;
+}
+
 .button span {
   cursor: pointer;
   display: inline-block;
