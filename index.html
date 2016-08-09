@@ -9,7 +9,8 @@
   <script src='js/index.js'></script>
   <script src='js/fLog.js'></script>
 </head>
-<body id="body">
+<!-- <body id="body"> -->
+<body>
     <div id="login"> 
     <script>
     function nxtImg(){
@@ -22,6 +23,8 @@
         <input id ="password" type="password" placeholder="Password"></input>
         <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
         </fb:login-button>
+        <div id="status">
+        </div>
         <button onClick="login()" class="button"><span><p>Login</p></span></button>
         <button onClick ="signup()" class="button"><span><p>Sign Up</p></span></button>
         <button onClick = "nxtImg()" class="button2"><span><p> >> </p></button>
