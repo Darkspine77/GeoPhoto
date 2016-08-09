@@ -1,13 +1,13 @@
   var lat; 
   var lon;
-  var coords = ""
-
+  var coords = []
   navigator.geolocation.getCurrentPosition
     (function(position){
     
         lat = position.coords.latitude;
         lon = position.coords.longitude;
-        coords = lat + "," + lon
+        coords.push(lat);
+        coords.push(lon);
     });
    
 
@@ -26,12 +26,14 @@ var click = false;
 
 function upload() {
     var name = $('#name').val();
+    var geo = $('#geo').val();
     var img = $('#file').val();
     var like = 0;
 
     database.push({
         'name':name,
-        'locus': coords,
+        'locus': geo,
+        'coords': coords,
         'image': img,
         'like': like
     });
@@ -45,11 +47,15 @@ database.on('child_added',function(dataRow){
 	//getting raw values
   	var row = dataRow.val();
   	//adding to the div
+    withinLat = row.coords[0] < (lat + .00723) && row.coords[0] > (lat - .00723);
+    withinLon = row.coords[1] < (lon + .00723) && row.coords[1] > (lon - .00723);
+    if(withinLon && withinLat){ 
     $(".locus").append(
         '<div class="photo"><div class="info"><h2 class="user">' + row.name + '|' + row.locus +
         '</h2><button type="button" name="button" class="button">like</button><h2 class="likes">' + row.like +
         '</h2></div><img src="' + row.image + '" class="width"/></div>'
     );
+  }
 })
 
 $("#cancel").click(function() {
