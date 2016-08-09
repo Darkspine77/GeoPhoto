@@ -31,13 +31,11 @@
       }
 
       function login(){
-        if($("#username").val() =! "" || $("#password").val() != ""){
+
           var Username = $("#username").val();
           var Password = $("#password").val();
-        } else {
-          alert("Please Enter Something In Both Fields")
-        }
-        var passCheck = null
+        if(Username != "" || Password != ""){
+          var passCheck = null
         firebase.database().ref('users/' + Username).on('value', function(snapshot) {
             if(snapshot.val() != null){
             passCheck = snapshot.val().Password
@@ -45,6 +43,10 @@
             alert("An acoount has not been made with that user name")
           }
         }); 
+        } else {
+          alert("Please Enter Something In Both Fields")
+        }
+        
         if(passCheck = Password && passCheck != null){
           alert("Welcome back " + Username);
         }
