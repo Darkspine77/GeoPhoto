@@ -3,14 +3,13 @@
 <head>
   <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.2/p5.js"></script>
-  <link rel = "stylesheet" href = "css/login.css">
+  <!-- <link rel = "stylesheet" href = "css/login.css"> -->
   <title>Locus</title>
   <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
   <script src='js/index.js'></script>
   <script src='js/fLog.js'></script>
 </head>
-<!-- <body id="body"> -->
-<body>
+<body id="body">
     <div id="login"> 
     <script>
     function nxtImg(){
@@ -23,8 +22,6 @@
         <input id ="password" type="password" placeholder="Password"></input>
         <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
         </fb:login-button>
-        <div id="status">
-        </div>
         <button onClick="login()" class="button"><span><p>Login</p></span></button>
         <button onClick ="signup()" class="button"><span><p>Sign Up</p></span></button>
         <button onClick = "nxtImg()" class="button2"><span><p> >> </p></button>
