@@ -1,30 +1,42 @@
 <!DOCTYPE html>
-<html lan = "en">
-<head>
-  <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="334812641366-ur32j8gc5fssknoiil8geb3fi105uqhq.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.2/p5.js"></script>
-  <link rel = "stylesheet" href = "css/login.css">
-  <title>Locus</title>
-  <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
-  <script src='js/index.js'></script>
-</head>
-<body id="body">
-    <div id="login"> 
-        <h1>Locus</h1>
-        <p>Our statement</p>
-        <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-    <script>
-
-    </script>
-        <input id="username" type="text" placeholder="Username"></input>
-        <input id ="password" type="password" placeholder="Password"></input>
-        <button onClick="login()" class="button"><span><p>Login</p></span></button>
-        <button onClick ="signup()" class="button"><span><p>Sign Up</p></span></button>
-        <button onClick = "nxtImg()" class="button2"><span><p> >> </p></span></button>
-        <button onClick = "backImg()" class="button3"><span><p> << </p></span></button>
-    </div>
-</body>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Locus</title>
+        <link rel="stylesheet" href="locus.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans|Scope+One" rel="stylesheet">
+        <!-- <link rel="icon" href="pokeball.png"> -->
+    </head>
+    <body>
+        <div class="header">
+            <h1>Locus</h1>
+            <img src="plus.png" id="plus"/>
+        </div>
+        <div class="upload">
+            <img src="cancel.png" id="cancel"/>
+            <h2 id="mar">Share your best Picture</h2>
+            Name:
+            <input type="text" id="name"><br>
+            location:
+            <input type="text" id="geo"><br>
+            Paste image url:
+            <input type="text" id="file"><br>
+            <button type="button" id="upload" onclick="upload()">Upload</button>
+        </div>
+        <div class="locus">
+        </div>
+        <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
+        <script>
+        // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyDRZv7oRYZj0X9--OLs4tIwXc_R_NRXlw0",
+                authDomain: "locus-c3202.firebaseapp.com",
+                databaseURL: "https://locus-c3202.firebaseio.com",
+                storageBucket: "locus-c3202.appspot.com",
+            };
+        firebase.initializeApp(config);
+        </script>
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+        <script src='locus.js'></script>
+    </body>
 </html>
