@@ -1,18 +1,37 @@
 <!DOCTYPE html>
 <html lan = "en">
 <head>
+  <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="871323231106-gf2fk5sir7pro8klal8snp9o2f5tdrqv.apps.googleusercontent.com.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
   <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.2/p5.js"></script>
   <link rel = "stylesheet" href = "css/login.css">
   <title>Locus</title>
   <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
   <script src='js/index.js'></script>
-  <script src='js/fLog.js'></script>
 </head>
 <body id="body">
     <div id="login"> 
         <h1>Locus</h1>
         <p>Our statement</p>
+        <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <script>
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+      };
+    </script>
         <input id="username" type="text" placeholder="Username"></input>
         <input id ="password" type="password" placeholder="Password"></input>
         <button onClick="login()" class="button"><span><p>Login</p></span></button>
