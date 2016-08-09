@@ -9,8 +9,10 @@ body {
     background-color: rgb(255, 160, 0);
     color: white;
     height: 96px;
+    width: 100%; 
     text-align: center;
     margin: 0;
+    position: fixed;
 }
 
 h1 {
@@ -89,8 +91,8 @@ h1 {
 .upload {
     position: fixed;
     margin: 0px;
-    margin-left: -335px;
-    margin-top: 20px;
+    margin-left: -365px;
+    margin-top: 140px;
     padding: 20px;
     border: 2px solid rgb(255, 160, 0);
     background-color: white;

@@ -27,7 +27,11 @@ var click = false;
 function upload() {
     var name = $('#name').val();
     var geo = $('#geo').val();
-    var img = $('#file').val();
+    if($('#file1').val() != ""){
+    var img = $('#file1').val();
+} else {
+    var img = $('#file2').val();
+}
     var like = 0;
 
     database.push({
@@ -38,7 +42,7 @@ function upload() {
         'like': like
     });
     $('.upload').animate({
-        marginLeft: '-=350px'}, 500
+        marginLeft: '-=380px'}, 500
     )
     click = false;
 }
@@ -60,7 +64,7 @@ database.on('child_added',function(dataRow){
 
 $("#cancel").click(function() {
     $('.upload').animate({
-        marginLeft: '-=350px'}, 500
+        marginLeft: '-=380px'}, 500
     )
     click = false;
 })
@@ -68,7 +72,7 @@ $("#cancel").click(function() {
 $('#plus').click(function() {
     if (click == false) {
         $('.upload').animate({
-            marginLeft: '+=350px'}, 500
+            marginLeft: '+=380px'}, 500
         )
         click = true;
     }
