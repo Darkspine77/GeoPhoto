@@ -4,7 +4,8 @@
       // locate you.
       // Initialize Firebase
     var account = [] 
-    var Gprofile =     var config = {
+    
+    var config = {
       apiKey: "AIzaSyAonQbZOHwhSRXNzcNBaI2cch0MKs-SSVk",
       authDomain: "locus-7167b.firebaseapp.com",
       databaseURL: "https://locus-7167b.firebaseio.com",
