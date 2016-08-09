@@ -25,7 +25,7 @@
         var profile = googleUser.getBasicProfile();
         var id_token = googleUser.getAuthResponse().id_token;
         var email = profile.getEmail().replace('@gmail.com', '');
-        $("#username").val(profile.getEmail());
+        $("#username").val(email);
         $("#password").val(profile.getId());
         firebase.database().ref('users/' + $("#username").val()).on('value', function(snapshot) {
           if(snapshot.val() == null){
