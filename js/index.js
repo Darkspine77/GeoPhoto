@@ -28,7 +28,7 @@
         $("#username").val() = profile.getGivenName();
         $("#password").val() = profile.getID();
         firebase.database().ref('users/' + $("#username").val()).on('value', function(snapshot) {
-          if(snapshot.val() = null){
+          if(snapshot.val() == null){
               signup();
           }
           login();
