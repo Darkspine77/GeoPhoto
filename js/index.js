@@ -31,14 +31,18 @@
       }
 
       function login(){
-        var Username = $("#username").val();
-        var Password = $("#password").val();
+        if($("#username").val() =! "" || $("#password").val() != ""){
+          var Username = $("#username").val();
+          var Password = $("#password").val();
+        } else {
+          alert("Please Enter Something In Both Fields")
+        }
         var passCheck = null
         firebase.database().ref('users/' + Username).on('value', function(snapshot) {
             if(snapshot.val() != null){
             passCheck = snapshot.val().Password
           } else {
-            alert("That account has not been created yet")
+            alert("An acoount has not been made with that user name")
           }
         }); 
         if(passCheck = Password && passCheck != null){
