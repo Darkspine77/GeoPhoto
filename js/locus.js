@@ -53,8 +53,6 @@ var click = false;
 function upload() {
     var name = account.User;
     var geo = $('#geo').val();
-    var month = new getMonth();
-    var day = new getDate();
     if($('#file2').val() != ""){
         var file = document.getElementById("file2").files[0];
 // We can use the 'name' property on the File API to get our file name
@@ -67,8 +65,6 @@ function upload() {
             database.push({
         'name':name,
         'locus': geo,
-        'month': month,
-        'day': day,
         'coords': coords,
         'image': img,
         'like': like
@@ -81,6 +77,7 @@ function upload() {
     click = false;
     $('#name').val("");
     $('#geo').val("");
+    $('#file1').val("");
     $('#file2').val("");
     } else {
         alert('You must upload an image first')
@@ -96,7 +93,7 @@ database.on('child_added',function(dataRow){
     if(withinLon && withinLat){
     $(".locus").append(
         '<div class="photo"><div class="info"><h2 class="user">' + row.name + '|' + row.locus +
-        '</h2><h2 class="date">' + row.month + " / " + row.day +
+        '</h2><button type="button" name="button" class="button">like</button><h2 class="likes">' + row.like +
         '</h2></div><div class="center"><img src="' + row.image + '" class="width"/></div></div>'
     );
   }

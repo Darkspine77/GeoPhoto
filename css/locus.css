@@ -86,11 +86,10 @@ h1 {
     margin-top: 116px;
 }
 
-.date {
+.likes {
     display: inline;
     float: right;
-    color: rgb(160, 160, 160);
-    font-size: 24px;
+    font-size: 36px;
     margin: 0px;
     margin-right: 10px;
 }
