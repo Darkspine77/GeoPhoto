@@ -22,13 +22,6 @@
         coords.push(lat);
         coords.push(lon);
     });
-    var geocoder = new google.maps.Geocoder;
-    geocoder.geocode({'location': coords}, function(results, status) {
-          if (status === 'OK') {
-            console.log(results)
-          }
-        });
-
 
     window.onbeforeunload = function(event)
     {
