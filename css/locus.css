@@ -67,6 +67,7 @@ h1 {
     font-family: 'Open Sans', sans-serif;
     float: right;
     margin-right: 20px;
+    margin-top: 0px;
     background-color: rgb(255, 160, 0);
     color: white;
     width: 60px;
