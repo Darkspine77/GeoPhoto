@@ -20,7 +20,7 @@
             };
         firebase.initializeApp(config);
 
-
+var storageRef = firebase.storage().ref();
 var database = firebase.database().ref();
 var click = false;
 
@@ -29,8 +29,29 @@ function upload() {
     var geo = $('#geo').val();
     if($('#file1').val() != ""){
         var img = $('#file1').val();
+        database.push({'image': img});
     } else {
-        var img = $('#file2').val();
+        var file = $('#file2').val();
+
+        // Upload the file to the path 'images/rivers.jpg'
+        // We can use the 'name' property on the File API to get our file name
+        var uploadTask = storageRef.child('images/' + file.name).put(file);
+
+        // Register three observers:
+        // 1. 'state_changed' observer, called any time the state changes
+        // 2. Error observer, called on failure
+        // 3. Completion observer, called on successful completion
+        uploadTask.on('state_changed', function(snapshot){
+          // Observe state change events such as progress, pause, and resume
+          // See below for more detail
+        }, function(error) {
+          // Handle unsuccessful uploads
+        }, function() {
+          // Handle successful uploads on complete
+          // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+          var downloadURL = uploadTask.snapshot.downloadURL;
+          database.push({'image': downloadURL});
+        });
     }
     var like = 0;
 
@@ -38,7 +59,6 @@ function upload() {
         'name':name,
         'locus': geo,
         'coords': coords,
-        'image': img,
         'like': like
     });
     $('.upload').animate({
