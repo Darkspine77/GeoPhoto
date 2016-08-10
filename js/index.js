@@ -3,9 +3,6 @@
 // failed.", it means you probably did not give permission for the browser to
 // locate you.
 // Initialize Firebase
-var newURL = "https://picjumbo.imgix.net/DJI_0142.jpg?q=40&w=1650&sharp=30"
-var prevURL ="https://picjumbo.imgix.net/HNCK3505.jpg?q=40&w=1650&sharp=30"
-
 var config = {
     apiKey: "AIzaSyAonQbZOHwhSRXNzcNBaI2cch0MKs-SSVk",
     authDomain: "locus-7167b.firebaseapp.com",
@@ -73,31 +70,11 @@ var pleasework = setInterval(function() {
     if (counter > (stuff.length - 1) ) {
         counter = 0;
     }
-    $(body).css("background-image",'url(' + stuff[counter] + ')');
+    $("body").css("background-image",'url(' + stuff[counter] + ')');
+
     counter++;
 }, 3000);
 
 
 
-var yourchoice = false;
-if (yourchoice) {
-    function nxtImg(){
-        $(body).css("background-image",'url('+newURL);
-        if (newURL == "https://picjumbo.imgix.net/DJI_0142.jpg?q=40&w=1650&sharp=30"){
-            newURL = "https://picjumbo.imgix.net/HNCK3054.jpg?q=40&w=1650&sharp=30"
-            prevURL = "https://picjumbo.imgix.net/HNCK3505.jpg?q=40&w=1650&sharp=30"
-        }
-        if (newURL == "https://picjumbo.imgix.net/HNCK3054.jpg?q=40&w=1650&sharp=30"){
-            prevURL = "https://picjumbo.imgix.net/DJI_0142.jpg?q=40&w=1650&sharp=30"
-        }
-    }
-    function backImg(){
-        $(body).css("background-image",'url('+prevURL);
-        if (prevURL == "https://picjumbo.imgix.net/DJI_0142.jpg?q=40&w=1650&sharp=30"){
-            prevURL = "https://picjumbo.imgix.net/HNCK3505.jpg?q=40&w=1650&sharp=30"
-        if (prevURL == "https://picjumbo.imgix.net/HNCK3505.jpg?q=40&w=1650&sharp=30"){
-            newURL = "https://picjumbo.imgix.net/DJI_0142.jpg?q=40&w=1650&sharp=30"
-        }
-        }
-    }
-}
+
