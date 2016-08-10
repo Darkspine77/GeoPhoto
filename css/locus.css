@@ -92,6 +92,7 @@ h1 {
 
 .width {
     max-width: 100%;
+    margin: 0px auto;
 }
 
 /* image to uplad popup  */
