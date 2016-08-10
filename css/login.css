@@ -84,15 +84,7 @@ p {
     text-align: center;
 }
 
-#username {
-    border: 0px;
-    background-color: white;
-    padding: 10px;
-    margin: 10px;
-    font-size: 14px;
-}
-
-#password {
+#username, #password {
     border: 0px;
     background-color: white;
     padding: 10px;

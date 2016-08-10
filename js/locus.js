@@ -1,15 +1,15 @@
-  var lat; 
+  var lat;
   var lon;
   var coords = []
   navigator.geolocation.getCurrentPosition
     (function(position){
-    
+
         lat = position.coords.latitude;
         lon = position.coords.longitude;
         coords.push(lat);
         coords.push(lon);
     });
-   
+
 
 
    var config = {
@@ -28,10 +28,10 @@ function upload() {
     var name = $('#name').val();
     var geo = $('#geo').val();
     if($('#file1').val() != ""){
-    var img = $('#file1').val();
-} else {
-    var img = $('#file2').val();
-}
+        var img = $('#file1').val();
+    } else {
+        var img = $('#file2').val();
+    }
     var like = 0;
 
     database.push({
@@ -42,7 +42,7 @@ function upload() {
         'like': like
     });
     $('.upload').animate({
-        marginLeft: '-=380px'}, 500
+        marginLeft: '-=520px'}, 520
     )
     click = false;
 }
@@ -53,7 +53,7 @@ database.on('child_added',function(dataRow){
   	//adding to the div
     withinLat = row.coords[0] < (lat + .00723) && row.coords[0] > (lat - .00723);
     withinLon = row.coords[1] < (lon + .00723) && row.coords[1] > (lon - .00723);
-    if(withinLon && withinLat){ 
+    if(withinLon && withinLat){
     $(".locus").append(
         '<div class="photo"><div class="info"><h2 class="user">' + row.name + '|' + row.locus +
         '</h2><button type="button" name="button" class="button">like</button><h2 class="likes">' + row.like +
@@ -64,7 +64,7 @@ database.on('child_added',function(dataRow){
 
 $("#cancel").click(function() {
     $('.upload').animate({
-        marginLeft: '-=380px'}, 500
+        marginLeft: '-=520px'}, 500
     )
     click = false;
 })
@@ -72,7 +72,7 @@ $("#cancel").click(function() {
 $('#plus').click(function() {
     if (click == false) {
         $('.upload').animate({
-            marginLeft: '+=380px'}, 500
+            marginLeft: '+=520px'}, 500
         )
         click = true;
     }

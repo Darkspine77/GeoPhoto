@@ -3,6 +3,7 @@
 body {
     margin: 0px;
     font-family: 'Scope One', sans-serif;
+    font-size: 26px;
 }
 
 .header {
@@ -10,7 +11,7 @@ body {
     color: white;
     height: 96px;
     top: 0;
-    width: 100%; 
+    width: 100%;
     text-align: center;
     margin: 0;
     position: fixed;
@@ -30,12 +31,13 @@ h1 {
 
 #mar {
     margin-top: 5px;
+    font-size: 32px;
     margin-bottom: 15px;
 }
 
 #cancel {
-    height: 24px;
-    width: 24px;
+    height: 32px;
+    width: 32px;
     float: right;
     margin-top: 8px;
 }
@@ -92,8 +94,9 @@ h1 {
 .upload {
     position: fixed;
     margin: 0px;
-    margin-left: -365px;
+    margin-left: -480px;
     margin-top: 140px;
+    width: 430px;
     padding: 20px;
     border: 2px solid rgb(255, 160, 0);
     background-color: white;
@@ -102,6 +105,12 @@ h1 {
 p {
     margin-bottom: 0px;
 }
+#name, #geo, #file1 {
+    padding: 4px;
+    font-size: 18px;
+    border: 1px solid rgb(255, 160, 0);
+}
+
 
 button {
     font-family: 'Open Sans', sans-serif;
@@ -109,10 +118,12 @@ button {
     margin: 0px;
     float: right;
     border: 0px;
-    background-color: rgb(255, 160, 0);;
-    color: white;s
-    border: 0px;
-    height: 35px;
+    background-color: rgb(255, 160, 0);
+    color: white;
+    padding:12px;
+    border: 2px;
+    border-radius: 10px;
+    border-style: outset;
     font-size: 20px;
     margin-top: 10px;
 }
