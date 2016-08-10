@@ -1,10 +1,10 @@
+
 body{
   font-family: 'Scope One', sans-serif;
   color: white;
   margin: 0;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
 }
 
 h1 {
@@ -15,6 +15,7 @@ h1 {
 
 h3 {
     font-size: 32px;
+    margin-bottom: 10px;
 }
 
 p {
