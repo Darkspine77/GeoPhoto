@@ -45,6 +45,10 @@ function upload() {
         marginLeft: '-=520px'}, 520
     )
     click = false;
+    $('#name').val("");
+    $('#geo').val("");
+    $('#file1').val("");
+    $('#file2').val("");
 }
 
 database.on('child_added',function(dataRow){
