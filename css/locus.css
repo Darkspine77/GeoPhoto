@@ -62,7 +62,7 @@ h1 {
 }
 
 .user {
-    font-size: 26px;
+    font-size: 36px;
     margin-left: 20px;
     display: inline;
 }
@@ -71,14 +71,14 @@ h1 {
     font-family: 'Open Sans', sans-serif;
     float: right;
     margin-right: 20px;
-    margin-top: 0px;
+    margin-top: 15px;
     background-color: rgb(255, 160, 0);
     color: white;
-    width: 60px;
     border: 0px;
     padding: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
     border-radius: 0px;
-    height: 35px;
     font-size: 20px;
 }
 
@@ -89,7 +89,7 @@ h1 {
 .likes {
     display: inline;
     float: right;
-    font-size: 26px;
+    font-size: 36px;
     margin: 0px;
     margin-right: 10px;
 }
