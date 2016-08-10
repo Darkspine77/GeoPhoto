@@ -13,7 +13,6 @@
    account = atob(account);
    //parses to Object the JSON string
    account = JSON.parse(account);
-      console.log(account)
    //do what you need with the Object
   navigator.geolocation.getCurrentPosition
     (function(position){
@@ -23,6 +22,12 @@
         coords.push(lat);
         coords.push(lon);
     });
+    var geocoder = new google.maps.Geocoder;
+    geocoder.geocode({'location': coords}, function(results, status) {
+          if (status === 'OK') {
+            console.log(results)
+          }
+        });
 
 
     window.onbeforeunload = function(event)
@@ -53,7 +58,7 @@ var database = firebase.database().ref();
 var click = false;
 
 function upload() {
-    var name = $('#name').val();
+    var name = account.User;
     var geo = $('#geo').val();
     if($('#file2').val() != ""){
         var file = document.getElementById("file2").files[0];
