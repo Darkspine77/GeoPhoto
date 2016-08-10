@@ -23,6 +23,13 @@ p {
     margin-bottom: 10px;
 }
 
+#alert {
+    font-family: 'Open Sans', sans-serif;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: red;
+}
+
 .button {
   border-radius: 4px;
   background-color: rgb(255,160,0);
@@ -78,7 +85,6 @@ p {
 }
 
 #username {
-    display: inline;
     border: 0px;
     background-color: white;
     padding: 10px;
@@ -87,7 +93,6 @@ p {
 }
 
 #password {
-    display: inline;
     border: 0px;
     background-color: white;
     padding: 10px;

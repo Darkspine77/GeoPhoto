@@ -55,11 +55,11 @@ function login(){
             if(snapshot.val() != null){
                 passCheck = snapshot.val().Password
             } else {
-                alert("An acoount has not been made with that user name")
+                $('#alert').text("An account has not been made with that user name");
             }
         });
     } else {
-        alert("Please Enter Something In Both Fields")
+        $('#alert').text("Please Enter Something In Both Fields");
     }
     if(passCheck = Password && passCheck != null){
         document.location.href = "feed.html";
