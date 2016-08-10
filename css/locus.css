@@ -71,7 +71,7 @@ h1 {
     font-family: 'Open Sans', sans-serif;
     float: right;
     margin-right: 20px;
-    margin-top: 15px;
+    margin-top: 7px;
     background-color: rgb(255, 160, 0);
     color: white;
     border: 0px;
@@ -79,7 +79,7 @@ h1 {
     padding-left: 15px;
     padding-right: 15px;
     border-radius: 0px;
-    font-size: 20px;
+    font-size: 26px;
 }
 
 .locus {
