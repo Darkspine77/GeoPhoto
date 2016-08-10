@@ -9,6 +9,7 @@ body {
     background-color: rgb(255, 160, 0);
     color: white;
     height: 96px;
+    top: 0;
     width: 100%; 
     text-align: center;
     margin: 0;
