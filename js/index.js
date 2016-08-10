@@ -59,7 +59,19 @@ function login(){
         $('#alert').text("Please Enter Something In Both Fields");
     }
     if(passCheck = Password && passCheck != null){
-        document.location.href = "feed.html";
+           var account = {
+             User: Username,
+             Pass: Password
+           };
+           console.log(account)
+           //converts to JSON string the Object
+           account = JSON.stringify(account);
+           //creates a base-64 encoded ASCII string
+           account = btoa(account);
+           //save the encoded accout to web storage
+           localStorage.setItem('_account', account);
+            document.location.href = "feed.html";
+
     }
 }
 
