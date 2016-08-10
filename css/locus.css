@@ -51,6 +51,10 @@ h1 {
     font-weight: lighter;
 }
 
+.center {
+    margin: 0px auto;
+}
+
 .info {
     margin: 0px;
     margin-top: 20px;
