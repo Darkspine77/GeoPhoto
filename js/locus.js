@@ -1,51 +1,49 @@
-  var lat;
-  var lon;
-  var coords = []
-  var img;
+var lat;
+var lon;
+var coords = []
+var img;
+var url;
 
-   account = localStorage.getItem('_account');
-   if(account == null){
+account = localStorage.getItem('_account');
+if(account == null){
     alert("This content is only avaliable to users who have logged in")
     document.location.href = "index.html";
-   }
-   localStorage.removeItem('_account');
-   //decodes a string data encoded using base-64
-   account = atob(account);
-   //parses to Object the JSON string
-   account = JSON.parse(account);
-   //do what you need with the Object
-  navigator.geolocation.getCurrentPosition
-    (function(position){
+}
+localStorage.removeItem('_account');
+//decodes a string data encoded using base-64
+account = atob(account);
+//parses to Object the JSON string
+account = JSON.parse(account);
+//do what you need with the Object
+navigator.geolocation.getCurrentPosition(function(position){
+    lat = position.coords.latitude;
+    lon = position.coords.longitude;
+    url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lon + "&key=AIzaSyC73wjATYJAPLcNV5Q1P69IPZvZWXV8biE";
+    console.log(url);
+    coords.push(lat);
+    coords.push(lon);
+});
 
-        lat = position.coords.latitude;
-        lon = position.coords.longitude;
-        coords.push(lat);
-        coords.push(lon);
-    });
+window.onbeforeunload = function(event) {
+    account = JSON.stringify(account);
+    //creates a base-64 encoded ASCII string
+    account = btoa(account);
+    //save the encoded accout to web storage
+    localStorage.setItem('_account', account);
+    console.log(localStorage.setItem('_account', account))
+    alert("saving")
+};
 
-    window.onbeforeunload = function(event)
-    {
-         account = JSON.stringify(account);
-           //creates a base-64 encoded ASCII string
-           account = btoa(account);
-           //save the encoded accout to web storage
-           localStorage.setItem('_account', account);
-           console.log(localStorage.setItem('_account', account))
-           alert("saving")
-    };
-
-
-   var config = {
-                apiKey: "AIzaSyA1n9MmgGXH8mUX8YCcpj8-tuzDW8Y3wVc",
-                authDomain: "locusimg.firebaseapp.com",
-                databaseURL: "https://locusimg.firebaseio.com",
-                storageBucket: "locusimg.appspot.com",
-            };
-        firebase.initializeApp(config);
+var config = {
+    apiKey: "AIzaSyA1n9MmgGXH8mUX8YCcpj8-tuzDW8Y3wVc",
+    authDomain: "locusimg.firebaseapp.com",
+    databaseURL: "https://locusimg.firebaseio.com",
+    storageBucket: "locusimg.appspot.com",
+};
+firebase.initializeApp(config);
 
 // Create a root reference
 var storageRef = firebase.storage().ref();
-
 
 var database = firebase.database().ref();
 var click = false;
@@ -59,15 +57,14 @@ function upload() {
         var uploadTask = storageRef.child('images/' + file.name).put(file);
         uploadTask.on('state_changed', function(snapshot){
         }, function(error) {
-
         }, function() {
             var img = uploadTask.snapshot.downloadURL;
             database.push({
-        'name':name,
-        'locus': geo,
-        'coords': coords,
-        'image': img,
-        'like': like
+                'name':name,
+                'locus': geo,
+                'coords': coords,
+                'image': img,
+                'like': like
             });
         });
     var like = 0;
