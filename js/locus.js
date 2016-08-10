@@ -31,16 +31,6 @@ var click = false;
 function upload() {
     var name = $('#name').val();
     var geo = $('#geo').val();
-    if($('#file1').val() != ""){
-     img = $('#file1').val();
-     database.push({
-        'name':name,
-        'locus': geo,
-        'coords': coords,
-        'image': img,
-        'like': like
-    });
-    } 
     if($('#file2').val() != ""){
         var file = document.getElementById("file2").files[0];
 // We can use the 'name' property on the File API to get our file name
@@ -58,7 +48,6 @@ function upload() {
         'like': like
             });
         });
-    }
     var like = 0;
     $('.upload').animate({
         marginLeft: '-=520px'}, 520
@@ -68,6 +57,9 @@ function upload() {
     $('#geo').val("");
     $('#file1').val("");
     $('#file2').val("");
+    } else {
+        alert('You must upload an image first')
+    }
 }
 
 database.on('child_added',function(dataRow){
