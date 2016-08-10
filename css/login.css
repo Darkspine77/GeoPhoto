@@ -1,7 +1,28 @@
-
-      body{
-  background-image:url("https://picjumbo.imgix.net/HNCK3505.jpg?q=40&w=1650&sharp=30");
+body{
+  font-family: 'Scope One', sans-serif;
+  color: white;
+  margin: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
+h1 {
+    margin: 15px;
+    font-size: 64px;
+    color: rgb(255, 160, 0);
+}
+
+h3 {
+    font-size: 32px;
+}
+
+p {
+    font-family: 'Open Sans', sans-serif;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .button {
   border-radius: 4px;
   background-color: rgb(255,160,0);
@@ -45,23 +66,46 @@
   right: 0;
 }
 
-body {
-    background-color: black;
-    color: white;
-    margin: 0;
-}
-
 #login {
-    margin:0 auto; 
-    margin-top:200px;
-    background-color: white;
-    width:500px;
+    margin:0 auto;
+    margin-top:175px;
+    background-color: rgba(255, 255, 255, .7);
     color: black;
+    width: 600px;
+    padding: 15px;
+    border-radius: 50px;
     text-align: center;
 }
+
+#username {
+    display: inline;
+    border: 0px;
+    background-color: white;
+    padding: 10px;
+    margin: 10px;
+    font-size: 14px;
+}
+
 #password {
-   display: block;
-   margin:0 auto; 
+    display: inline;
+    border: 0px;
+    background-color: white;
+    padding: 10px;
+    margin: 10px;
+    font-size: 14px;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: black;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: black;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: black;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: black;
 }
 
 .button2 {
