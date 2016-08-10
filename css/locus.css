@@ -58,7 +58,7 @@ h1 {
 }
 
 .user {
-    font-size: 24px;
+    font-size: 26px;
     margin-left: 20px;
     display: inline;
 }
@@ -84,8 +84,8 @@ h1 {
 .likes {
     display: inline;
     float: right;
+    font-size: 26px;
     margin: 0px;
-    margin-bottom: 20px;
     margin-right: 10px;
 }
 
