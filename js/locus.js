@@ -3,6 +3,7 @@ var lon;
 var coords = []
 var img;
 var url;
+var location;
 
 account = localStorage.getItem('_account');
 if(account == null){
@@ -19,10 +20,20 @@ navigator.geolocation.getCurrentPosition(function(position){
     lat = position.coords.latitude;
     lon = position.coords.longitude;
     url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lon + "&key=AIzaSyC73wjATYJAPLcNV5Q1P69IPZvZWXV8biE";
+    $.ajax({
+        url: url,
+        success: function(result) {
+            print(result);
+        },
+    })
     console.log(url);
     coords.push(lat);
     coords.push(lon);
 });
+
+function print(obj) {
+    location = obj['results'][0]['address_components'][2]['long_name'];
+}
 
 window.onbeforeunload = function(event) {
     account = JSON.stringify(account);
@@ -50,7 +61,7 @@ var click = false;
 
 function upload() {
     var name = account.User;
-    var geo = $('#geo').val();
+    var geo = location;
     if($('#file2').val() != ""){
         var file = document.getElementById("file2").files[0];
 // We can use the 'name' property on the File API to get our file name
