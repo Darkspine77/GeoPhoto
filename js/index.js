@@ -86,7 +86,3 @@ var pleasework = setInterval(function() {
 
     counter++;
 }, 3000);
-
-
-
-
