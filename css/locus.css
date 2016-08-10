@@ -65,20 +65,20 @@ h1 {
 
 .button {
     font-family: 'Open Sans', sans-serif;
-    font-weight: lighter;
-    margin: 0px;
     float: right;
     margin-right: 20px;
     background-color: rgb(255, 160, 0);
     color: white;
     width: 60px;
     border: 0px;
+    padding: 0px;
+    border-radius: 0px;
     height: 35px;
     font-size: 20px;
 }
 
 .locus {
-    margin-top: 96px;
+    margin-top: 116px;
 }
 
 .likes {
@@ -109,6 +109,7 @@ h1 {
 p {
     margin-bottom: 0px;
 }
+
 #name, #geo, #file1 {
     padding: 4px;
     font-size: 18px;
