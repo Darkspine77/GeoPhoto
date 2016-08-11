@@ -41,6 +41,8 @@ navigator.geolocation.getCurrentPosition(function(position){
           if (status === 'OK') {
             var locinfo = results[1].formatted_address.split(',')
             area = locinfo[0]
+            console.log("asdsads");
+            console.log(area);
         }
       });
       }
