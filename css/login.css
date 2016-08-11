@@ -138,6 +138,7 @@ p {
   -o-transition: 1s ease-in-out;
   transition: 1s ease-in-out;
 }
+
 .title:hover {
   cursor: pointer;
   -webkit-transform: scale(1.5);
