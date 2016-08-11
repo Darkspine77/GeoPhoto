@@ -122,7 +122,7 @@ database.on('child_added',function(dataRow){
     if(withinLon && withinLat){
         $(".locus").append(
             '<div class="photo"><div class="info"><h2 class="user">' + row.name + '|' + row.locus +
-            '</h2><button type="button" name="button" class="button" onclick="likeme("' + guid() + '")">like</button><h2 class="likes">' + row.like +
+            '</h2><button type="button" name="button" class="button">like</button><h2 class="likes">' + row.like +
             '</h2></div><div class="center"><img src="' + row.image + '" class="width"/></div></div>'
         );
     }
