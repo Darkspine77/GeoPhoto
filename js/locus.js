@@ -82,7 +82,6 @@ var click = false;
 function upload() {
     var name = account.User;
     var like = 0;
-    var id = guid();
     console.log(id)
     if($('#file2').val() != "" || geo != ""){
         var file = document.getElementById("file2").files[0];
@@ -93,7 +92,6 @@ function upload() {
         }, function() {
             var img = uploadTask.snapshot.downloadURL;
             database.push({
-                'id': id,
                 'name':name,
                 'locus': area,
                 'coords': coords,
@@ -132,11 +130,9 @@ database.on('child_added',function(dataRow){
 
 function likeme(id) {
     console.log(id);
-    var like = firebase.database().ref('images/' + id + '/like');
-    console.log(like);
-    firebase.database().ref('images/' + id).set({
-        'like': like + 1
-    })
+    var like = firebase.database().ref('images/' + id);
+    console.log(like.val());
+    //firebase.database().ref('images/' + id).set({'like': like + 1})
     console.log("clicked worked bithc");
 }
 
