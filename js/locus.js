@@ -64,6 +64,15 @@ var config = {
 };
 firebase.initializeApp(config);
 
+function guid() {
+    function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    }
+    return s4() + s4() + s4() + s4() + s4() + s4() + s4() + s4();
+}
+
 // Create a root reference
 var storageRef = firebase.storage().ref();
 
@@ -73,6 +82,7 @@ var click = false;
 function upload() {
     var name = account.User;
     var like = 0;
+    var id = guid()
     if($('#file2').val() != "" || geo != ""){
         var file = document.getElementById("file2").files[0];
         // We can use the 'name' property on the File API to get our file name
@@ -82,6 +92,7 @@ function upload() {
         }, function() {
             var img = uploadTask.snapshot.downloadURL;
             database.push({
+                'id': id,
                 'name':name,
                 'locus': area,
                 'coords': coords,
@@ -102,21 +113,16 @@ function upload() {
     }
 }
 
-function randomNum() {
-    return Math.floor(Math.random() * 100000)
-}
-
 database.on('child_added',function(dataRow){
 	//getting raw values
   	var row = dataRow.val();
-    console.log(dataRow.key);
   	//adding to the div
     withinLat = row.coords[0] < (lat + .00723) && row.coords[0] > (lat - .00723);
     withinLon = row.coords[1] < (lon + .00723) && row.coords[1] > (lon - .00723);
     if(withinLon && withinLat){
         $(".locus").append(
             '<div class="photo"><div class="info"><h2 class="user">' + row.name + '|' + row.locus +
-            '</h2><button type="button" name="button" class="button" onclick="likeme("' + dataRow.key + '")">like</button><h2 class="likes">' + row.like +
+            '</h2><button type="button" name="button" class="button" onclick="likeme("' + guid() + '")">like</button><h2 class="likes">' + row.like +
             '</h2></div><div class="center"><img src="' + row.image + '" class="width"/></div></div>'
         );
     }
