@@ -107,7 +107,7 @@ database.on('child_added',function(dataRow){
     }
     console.log(row);
     console.log(database);
-    console.log(dataRow.parent.toString());
+    console.log(dataRow.parent);
     console.log(row.key);
 })
 
