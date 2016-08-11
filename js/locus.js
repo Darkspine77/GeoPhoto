@@ -5,17 +5,17 @@ var img;
 var url;
 var location;
 
-account = localStorage.getItem('_account');
-if(account == null){
-    alert("This content is only avaliable to users who have logged in")
-    // document.location.href = "index.html";
-}
-localStorage.removeItem('_account');
-//decodes a string data encoded using base-64
-account = atob(account);
-//parses to Object the JSON string
-account = JSON.parse(account);
-//do what you need with the Object
+// account = localStorage.getItem('_account');
+// if(account == null){
+//     alert("This content is only avaliable to users who have logged in")
+//     // document.location.href = "index.html";
+// }
+// localStorage.removeItem('_account');
+// //decodes a string data encoded using base-64
+// account = atob(account);
+// //parses to Object the JSON string
+// account = JSON.parse(account);
+// //do what you need with the Object
 navigator.geolocation.getCurrentPosition(function(position){
     lat = position.coords.latitude;
     lon = position.coords.longitude;
