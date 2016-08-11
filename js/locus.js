@@ -3,8 +3,7 @@ var lon;
 var coords = []
 var img;
 var url;
-var location
-var location1;
+var location;
 
 account = localStorage.getItem('_account');
 if(account == null){
@@ -32,7 +31,7 @@ navigator.geolocation.getCurrentPosition(function(position){
     coords.push(lat);
     coords.push(lon);
     var geocoder = new google.maps.Geocoder;
-    location1 = geocodeLatLng(geocoder);
+    location = geocodeLatLng(geocoder);
 
 
       function geocodeLatLng(geocoder) {
@@ -85,7 +84,7 @@ function upload() {
             var img = uploadTask.snapshot.downloadURL;
             database.push({
                 'name':name,
-                'locus': location1,
+                'locus': location,
                 'coords': coords,
                 'image': img,
                 'like': like
