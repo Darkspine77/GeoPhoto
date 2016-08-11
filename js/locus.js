@@ -4,6 +4,7 @@ var coords = []
 var img;
 var url;
 var location;
+var area;
 
 account = localStorage.getItem('_account');
 if(account == null){
@@ -39,7 +40,7 @@ navigator.geolocation.getCurrentPosition(function(position){
         geocoder.geocode({'location': latlng}, function(results, status) {
           if (status === 'OK') {
             var locinfo = results[1].formatted_address.split(',')
-            console.log(locinfo[0])
+            area = locinfo[0]
         }
       });
       }
@@ -81,7 +82,7 @@ function upload() {
             var img = uploadTask.snapshot.downloadURL;
             database.push({
                 'name':name,
-                'locus': location,
+                'locus': area,
                 'coords': coords,
                 'image': img,
                 'like': like
