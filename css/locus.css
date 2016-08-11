@@ -70,7 +70,7 @@ h1 {
 }
 
 .user {
-    font-size: 44px;
+    font-size: 40px;
     margin-left: 20px;
     display: inline;
 }
@@ -87,7 +87,7 @@ h1 {
     padding-left: 15px;
     padding-right: 15px;
     border-radius: 0px;
-    font-size: 40px;
+    font-size: 36px;
 }
 
 .locus {
@@ -97,7 +97,7 @@ h1 {
 .likes {
     display: inline;
     float: right;
-    font-size: 44px;
+    font-size: 40px;
     margin: 0px;
     margin-right: 10px;
 }
