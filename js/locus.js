@@ -104,7 +104,7 @@ function upload() {
     }
 }
 
-database.on('child_added',function(dataRow){
+database.on('value',function(dataRow){
 	//getting raw values
   	var row = dataRow.val();
     console.log(dataRow);
