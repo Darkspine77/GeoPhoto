@@ -31,7 +31,7 @@ navigator.geolocation.getCurrentPosition(function(position){
     coords.push(lat);
     coords.push(lon);
     var geocoder = new google.maps.Geocoder;
-    location = geocodeLatLng(geocoder);
+    geocodeLatLng(geocoder);
 
 
       function geocodeLatLng(geocoder) {
