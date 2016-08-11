@@ -42,7 +42,6 @@ window.onbeforeunload = function(event) {
     account = btoa(account);
     //save the encoded accout to web storage
     localStorage.setItem('_account', account);
-    console.log(localStorage.setItem('_account', account))
     alert("saving")
 };
 
@@ -57,7 +56,7 @@ firebase.initializeApp(config);
 // Create a root reference
 var storageRef = firebase.storage().ref();
 
-var database = firebase.database().ref();
+var database = firebase.database().ref('images/');
 var click = false;
 
 function upload() {
@@ -105,7 +104,7 @@ database.on('child_added',function(dataRow){
             '</h2><button type="button" name="button" class="button">like</button><h2 class="likes">' + row.like +
             '</h2></div><div class="center"><img src="' + row.image + '" class="width"/></div></div>'
         );
-        console.log(row);
+        console.log(database);
     }
 })
 
