@@ -98,7 +98,7 @@ database.on('child_added',function(dataRow){
     var objkey = dataRow.key;
     console.log(objkey);
     var string = String(objkey);
-
+    row.like += 1;
     console.log(row.like);
     console.log(String(objkey) + " - yassssssssssssssssssssss")
   	//adding to the div
