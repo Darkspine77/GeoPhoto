@@ -72,6 +72,7 @@ var click = false;
 
 function upload() {
     var name = account.User;
+    var like = 0;
     if($('#file2').val() != "" || geo != ""){
         var file = document.getElementById("file2").files[0];
         // We can use the 'name' property on the File API to get our file name
@@ -88,7 +89,6 @@ function upload() {
                 'like': like
             });
         });
-    var like = 0;
     $('.upload').animate({
         marginLeft: '-=520px'}, 520
     )
@@ -108,7 +108,7 @@ database.on('child_added',function(dataRow){
     var objkey = String(dataRow.key);
     console.log(objkey);
     var string = String(objkey);
-    var ads = row.like += 1;
+    console.log(string);
   	//adding to the div
     withinLat = row.coords[0] < (lat + .00723) && row.coords[0] > (lat - .00723);
     withinLon = row.coords[1] < (lon + .00723) && row.coords[1] > (lon - .00723);
