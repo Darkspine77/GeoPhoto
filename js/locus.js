@@ -95,7 +95,7 @@ function upload() {
 database.on('child_added',function(dataRow){
 	//getting raw values
   	var row = dataRow.val();
-    console.log(dataRow);
+    console.log(dataRow.name;
   	//adding to the div
     withinLat = row.coords[0] < (lat + .00723) && row.coords[0] > (lat - .00723);
     withinLon = row.coords[1] < (lon + .00723) && row.coords[1] > (lon - .00723);
