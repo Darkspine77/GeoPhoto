@@ -132,7 +132,13 @@ function likeme(id) {
     var like = firebase.database().ref('images/' + id);
     var asd = 1021;
     console.log(like);
-    like.push({'like': asd})
+    uploadTask.on('value', function(snapshot){
+    }, function(error) {
+    }, function() {
+        like.push({
+            'like': asd;
+        });
+    });
     console.log("clicked worked bithc");
 }
 
