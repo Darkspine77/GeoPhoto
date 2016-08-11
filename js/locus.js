@@ -118,7 +118,7 @@ database.on('child_added', function(dataRow) {
   	//adding to the div
   	withinLat = row.coords[0] < (lat + .00723) && row.coords[0] > (lat - .00723);
   	withinLon = row.coords[1] < (lon + .00723) && row.coords[1] > (lon - .00723);
-    	
+
     	if(withinLat && withinLon) {
 	        $(".locus").append(
 	            '<div id="' + dataRow.key + '" class="photo"><div class="info"><h2 class="user">' + row.name + '|' + row.locus +
@@ -136,6 +136,7 @@ function likeme(id) {
         like.update({
             'like': likes
         });
+        ///// Jamal, I am doing the like buttonn so can you please not mess with this function
         $("#" + id + " .likes").eq(0).text(likes);
     });
 }
