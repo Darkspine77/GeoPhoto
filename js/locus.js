@@ -95,7 +95,7 @@ function upload() {
 database.on('child_added',function(dataRow){
 	//getting raw values
   	var row = dataRow.val();
-    var objkey = dataRow.key;
+    var objkey = String(dataRow.key);
     console.log(objkey);
     var string = String(objkey);
     var ads = row.like += 1;
