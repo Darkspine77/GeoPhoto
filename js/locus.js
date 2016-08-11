@@ -30,24 +30,21 @@ navigator.geolocation.getCurrentPosition(function(position){
     //console.log(url);
     coords.push(lat);
     coords.push(lon);
-    // var geocoder = new google.maps.Geocoder;
-    // location = geocodeLatLng(geocoder);
+    var geocoder = new google.maps.Geocoder;
+    location = geocodeLatLng(geocoder);
 
 
-    //   function geocodeLatLng(geocoder) {
-    //     var latlng = {lat: parseFloat(coords[0]), lng: parseFloat(coords[1])};
-    //     geocoder.geocode({'location': latlng}, function(results, status) {
-    //       if (status === 'OK') {
-    //         var locinfo = results[1].formatted_address.split(',')
-    //         return locinfo[0]
-    //     }
-    //   });
-    //   }
+      function geocodeLatLng(geocoder) {
+        var latlng = {lat: parseFloat(coords[0]), lng: parseFloat(coords[1])};
+        geocoder.geocode({'location': latlng}, function(results, status) {
+          if (status === 'OK') {
+            var locinfo = results[1].formatted_address.split(',')
+            console.log(locinfo[0])
+        }
+      });
+      }
 });
 
-//function print(obj) {
-//    location = obj['results'][0]['address_components'][2]['long_name'];
-//}
 
 window.onbeforeunload = function(event) {
     account = JSON.stringify(account);
@@ -111,9 +108,6 @@ database.on('child_added',function(dataRow){
     console.log(objkey);
     var string = String(objkey);
     var ads = row.like += 1;
-    console.log(row.like);
-    console.log(ads);
-    console.log(String(objkey) + " - yassssssssssssssssssssss")
   	//adding to the div
     withinLat = row.coords[0] < (lat + .00723) && row.coords[0] > (lat - .00723);
     withinLon = row.coords[1] < (lon + .00723) && row.coords[1] > (lon - .00723);
