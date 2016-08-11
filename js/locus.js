@@ -130,7 +130,7 @@ database.on('child_added',function(dataRow){
 function likeme(id) {
     console.log(id);
     var like = firebase.database().ref('images/' + id);
-    console.log(like.val());
+    console.log(like);
     //firebase.database().ref('images/' + id).set({'like': like + 1})
     console.log("clicked worked bithc");
 }
