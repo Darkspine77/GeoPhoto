@@ -130,6 +130,11 @@ database.on('child_added',function(dataRow){
     }
 })
 
+function likeme(id) {
+    var like;
+    console.log("clicked worked b****")
+}
+
 $("#cancel").click(function() {
     $('.upload').animate({
         marginLeft: '-=520px'}, 500
