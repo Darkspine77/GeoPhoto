@@ -88,7 +88,7 @@ function upload() {
     $('#file1').val("");
     $('#file2').val("");
     } else {
-        $('#input').text('You must upload an image first');
+        $('#input').text('You must add a location and upload an image first');
     }
 }
 
