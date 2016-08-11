@@ -97,6 +97,9 @@ database.on('child_added',function(dataRow){
   	var row = dataRow.val();
     var objkey = dataRow.key;
     console.log(objkey);
+    var string = Stirng(objkey);
+
+    console.log(row.like);
     console.log(String(objkey) + " - yassssssssssssssssssssss")
   	//adding to the div
     withinLat = row.coords[0] < (lat + .00723) && row.coords[0] > (lat - .00723);
