@@ -10,6 +10,7 @@
       <input id="latlng" type="text" value="40.714224,-73.961452">
       <input id="submit" type="button" value="Reverse Geocode">
     </div>
+    <div id="map"></div>
     <script>
       coords = []
 
@@ -28,22 +29,15 @@
     coords.push(lat);
     coords.push(lon);
     console.log(coords)
-    geocode({'location': coords}, function(results, status) {
-          if (status === 'OK') {
-            if (results[1]) {
-              console.log(results)
-            }
-          } else {
-
-          }
-        });
+    var geocoder = new google.maps.Geocoder;
+    geocodeLatLng(geocoder);
 });
 
-      function geocodeLatLng(geocoder) {
+      function geocodeLatLng(geocoder, map, infowindow) {
         geocoder.geocode({'location': coords}, function(results, status) {
           if (status === 'OK') {
             if (results[1]) {
-              console.log(results)
+              console.log(coords)
             }
           } else {
 
