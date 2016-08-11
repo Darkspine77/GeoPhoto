@@ -30,30 +30,30 @@ navigator.geolocation.getCurrentPosition(function(position){
     //console.log(url);
     coords.push(lat);
     coords.push(lon);
-    var geocoder = new google.maps.Geocoder;
-    geocodeLatLng(geocoder);
+    // var geocoder = new google.maps.Geocoder;
+    // geocodeLatLng(geocoder);
 
 
-      function geocodeLatLng(geocoder) {
-        var latlng = {lat: parseFloat(coords[0]), lng: parseFloat(coords[1])};
-        geocoder.geocode({'location': latlng}, function(results, status) {
-          if (status === 'OK') {
-            var locinfo = results[1].formatted_address.split(',')
-            console.log(locinfo[0])
-        }
-      });
-      }
+    //   function geocodeLatLng(geocoder) {
+    //     var latlng = {lat: parseFloat(coords[0]), lng: parseFloat(coords[1])};
+    //     geocoder.geocode({'location': latlng}, function(results, status) {
+    //       if (status === 'OK') {
+    //         var locinfo = results[1].formatted_address.split(',')
+    //         console.log(locinfo[0])
+    //     }
+    //   });
+    //   }
 });
 
 
-window.onbeforeunload = function(event) {
-    account = JSON.stringify(account);
-    //creates a base-64 encoded ASCII string
-    account = btoa(account);
-    //save the encoded accout to web storage
-    localStorage.setItem('_account', account);
-    alert("saving")
-};
+// window.onbeforeunload = function(event) {
+//     account = JSON.stringify(account);
+//     //creates a base-64 encoded ASCII string
+//     account = btoa(account);
+//     //save the encoded accout to web storage
+//     localStorage.setItem('_account', account);
+//     alert("saving")
+// };
 
 var config = {
     apiKey: "AIzaSyA1n9MmgGXH8mUX8YCcpj8-tuzDW8Y3wVc",
