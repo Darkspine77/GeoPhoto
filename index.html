@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html lang = "en">
-    <head>
-        <meta name="google-signin-scope" content="profile email">
-        <meta name="google-signin-client_id" content="334812641366-ur32j8gc5fssknoiil8geb3fi105uqhq.apps.googleusercontent.com">
-        <script src="https://apis.google.com/js/platform.js" async defer></script>
-        <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.2/p5.js"></script>
-        <link rel = "stylesheet" href = "css/login.css">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans|Scope+One" rel="stylesheet">
-        <title>Locus</title>
-        <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
-        <script src='js/index.js'></script>
-    </head>
-    <body id="body" style="background-image: url(pictures/img6.jpg)">
-
-        <div id="login">
-            <h1 class="title">Locus</h1>
-            <h3>The pictures close to you.</h3>
-            <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-            <script></script>
-            <input id="username" type="text" placeholder="Username"></input>
-            <input id ="password" type="password" placeholder="Password"></input><br>
-            <p id="alert"></p>
-            <button onClick="login()" class="button"><span><p>Login</p></span></button>
-            <button onClick ="signup()" class="button"><span><p>Sign Up</p></span></button>
-        </div>
-    </body>
-    
+   <head>
+       <meta name="google-signin-scope" content="profile email">
+       <meta name="google-signin-client_id" content="334812641366-ur32j8gc5fssknoiil8geb3fi105uqhq.apps.googleusercontent.com">
+       <script src="https://apis.google.com/js/platform.js" async defer></script>
+       <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.2/p5.js"></script>
+       <link rel = "stylesheet" href = "css/login.css">
+       <link href="https://fonts.googleapis.com/css?family=Open+Sans|Scope+One" rel="stylesheet">
+       <title>Locus</title>
+       <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
+       <script src='js/index.js'></script>
+   </head>
+   <body>
+   <div id="div1" class="div1"></div>
+   <body id="body" style="background-image: url(pictures/img6.jpg)">
+       <div id="login">
+           <h1 class="title">Locus</h1>
+           <h3>The pictures close to you.</h3>
+           <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+           <script></script>
+           <input id="username" type="text" placeholder="Username"></input>
+           <input id ="password" type="password" placeholder="Password"></input><br>
+           <p id="alert"></p>
+           <button onClick="login()" class="button"><span><p>Login</p></span></button>
+           <button onClick ="signup()" class="button"><span><p>Sign Up</p></span></button>
+       </div>
+   </body>
 </html>
