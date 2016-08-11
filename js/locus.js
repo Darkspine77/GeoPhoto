@@ -83,6 +83,7 @@ var click = false;
 function upload() {
     var name = account.User;
     var like = 0;
+    var userlike = [];
     if($('#file2').val() != ""){
         var file = document.getElementById("file2").files[0];
         // We can use the 'name' property on the File API to get our file name
@@ -94,6 +95,7 @@ function upload() {
             database.push({
                 'name':name,
                 'locus': area,
+                'userlike': userlike,
                 'coords': coords,
                 'image': img,
                 'like': like
@@ -132,12 +134,25 @@ database.on('child_added', function(dataRow) {
 function likeme(id) {
     var like = firebase.database().ref('images/' + id);
     like.once('value').then(function(snapshot) {
-    	var likes = (snapshot.val().like + 1);
-        like.update({
-            'like': likes
-        });
-        ///// Jamal, I am doing the like buttonn so can you please not mess with this function
-        $("#" + id + " .likes").eq(0).text(likes);
+        var data = snapshot.val()
+        console.log(data.userlike);
+        console.log(data.userlike.length);
+        for (var i = 1; i < data.userlike.length; i++) {
+            console.log(data.userlike[i]);
+            if (data.userlike[i] == account.User) {
+                var likes = (data.like - 1);
+                like.update({
+                    'like': likes
+                });
+                $("#" + id + " .likes").eq(0).text(likes);
+            } else {
+                var likes = (data.like + 1);
+                like.update({
+                    'like': likes
+                });
+                $("#" + id + " .likes").eq(0).text(likes);
+            }
+        }
     });
 }
 
