@@ -59,7 +59,6 @@ var storageRef = firebase.storage().ref();
 var database = firebase.database().ref('images/');
 var click = false;
 
-
 function upload() {
     var name = account.User;
     var geo = $('#geo').val();
@@ -96,7 +95,6 @@ function upload() {
 database.on('child_added',function(dataRow){
 	//getting raw values
   	var row = dataRow.val();
-    console.log(dataRow);
   	//adding to the div
     withinLat = row.coords[0] < (lat + .00723) && row.coords[0] > (lat - .00723);
     withinLon = row.coords[1] < (lon + .00723) && row.coords[1] > (lon - .00723);
@@ -108,6 +106,8 @@ database.on('child_added',function(dataRow){
         );
     }
 })
+
+
 
 $("#cancel").click(function() {
     $('.upload').animate({
