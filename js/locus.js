@@ -131,20 +131,9 @@ function likeme(id) {
     var like = firebase.database().ref('images/' + id);
     var asd = 1021;
     like.on('value', function(snape) {
-        var snap = snape.val()
-        console.log(snape.val());
-        console.log(snape.key);
-        console.log(snap.name);
-        console.log(snap.locus);
-        console.log(snap.coords);
-        console.log(snap.image);
-        console.log(snap.like);
-        var likes = snap.like + 1
+        var snap = snape.val();
+        var likes = snap.like + 1;
         like.set({
-            'name': snap.name,
-            'locus': snap.locus,
-            'coords': snap.coords,
-            'image': snap.image,
             'like': likes
         })
     });
