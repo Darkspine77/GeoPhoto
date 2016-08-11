@@ -88,7 +88,7 @@ function upload() {
     $('#file1').val("");
     $('#file2').val("");
     } else {
-        document.getElementById('#input').innerHTML = 'You must upload an image first';
+        $('#input').text('You must upload an image first');
     }
 }
 
