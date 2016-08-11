@@ -136,7 +136,7 @@ function likeme(id) {
     }, function(error) {
     }, function() {
         like.push({
-            'like': asd;
+            'like': asd
         });
     });
     console.log("clicked worked bithc");
