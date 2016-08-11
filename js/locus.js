@@ -103,25 +103,12 @@ database.on('child_added',function(dataRow){
     if(withinLon && withinLat){
         $(".locus").append(
             '<div class="photo"><div class="info"><h2 class="user">' + row.name + '|' + row.locus +
-            '</h2><button type="button" name="button" class="button">like</button><h2 class="likes">' + row.like +
+            '</h2><button type="button" name="button" class="button" onclick="likeme(' + objkey + ')">like</button><h2 class="likes">' + row.like +
             '</h2></div><div class="center"><img src="' + row.image + '" class="width"/></div></div>'
         );
     }
 })
-/*
-var firebaseurl = "https://locusimg.firebaseio.com/images/";
 
-$.ajax({
-    url: firebaseurl,
-    success: function(results) {
-        print(results)
-    }
-})
-
-function print(obj) {
-    console.log(obj)
-}
-*/
 $("#cancel").click(function() {
     $('.upload').animate({
         marginLeft: '-=520px'}, 500
