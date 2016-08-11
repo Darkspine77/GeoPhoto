@@ -38,11 +38,11 @@ function initMap() {
         });
         var geocoder = new google.maps.Geocoder;
         var infowindow = new google.maps.InfoWindow;
-          geocodeLatLng(geocoder, map, infowindow);
+          geocodeLatLng(geocoder);
 
       }
 
-      function geocodeLatLng(geocoder, map, infowindow) {
+      function geocodeLatLng(geocoder) {
         var latlng = {lat: parseFloat(coords[0]), lng: parseFloat(coords[1])};
         geocoder.geocode({'location': latlng}, function(results, status) {
           if (status === 'OK') {
@@ -50,6 +50,7 @@ function initMap() {
             console.log(locinfo[0])
         }
       });
+      }
     </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEsvrSNb5sT_P-hcVuaHO0j8bCYjpBrsY&callback=initMap">
