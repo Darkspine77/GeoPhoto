@@ -97,7 +97,7 @@ database.on('child_added',function(dataRow){
   	var row = dataRow.val();
     var objkey = dataRow.key;
     console.log(objkey);
-    var string = Stirng(objkey);
+    var string = String(objkey);
 
     console.log(row.like);
     console.log(String(objkey) + " - yassssssssssssssssssssss")
