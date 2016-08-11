@@ -8,7 +8,7 @@ var location;
 account = localStorage.getItem('_account');
 if(account == null){
     alert("This content is only avaliable to users who have logged in")
-    document.location.href = "index.html";
+    // document.location.href = "index.html";
 }
 localStorage.removeItem('_account');
 //decodes a string data encoded using base-64
