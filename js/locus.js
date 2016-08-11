@@ -128,18 +128,26 @@ database.on('child_added',function(dataRow){
 })
 
 function likeme(id) {
-    console.log(id);
     var like = firebase.database().ref('images/' + id);
     var asd = 1021;
-    console.log(like);
-    like.on('value', function(snapshot){
-    }, function(error) {
-    }, function() {
-        like.push({
-            'like': asd
-        });
+    like.on('value', function(snap) {
+        console.log(snap.val());
+        console.log(snap.key);
+        console.log(snap.name);
+        console.log(snap.locus);
+        console.log(snap.coords);
+        console.log(snap.image);
+        console.log(snap.like);
+        var likes = snap.like + 1
+        like.set({
+            'name': snap.name,
+            'locus': snap.locus,
+            'coords': snap.coords,
+            'image': snap.image,
+            'like': likes
+        })
     });
-    console.log("clicked worked bithc");
+    console.log("clicked worked");
 }
 
 $("#cancel").click(function() {
