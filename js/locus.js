@@ -104,7 +104,6 @@ database.on('child_added',function(dataRow){
             '</h2><button type="button" name="button" class="button">like</button><h2 class="likes">' + row.like +
             '</h2></div><div class="center"><img src="' + row.image + '" class="width"/></div></div>'
         );
-        console.log(database);
     }
 })
 
