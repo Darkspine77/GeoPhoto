@@ -39,7 +39,7 @@ navigator.geolocation.getCurrentPosition(function(position){
         geocoder.geocode({'location': latlng}, function(results, status) {
           if (status === 'OK') {
             var locinfo = results[1].formatted_address.split(',')
-            return = locinfo[0]
+            return locinfo[0];
         }
       });
       }
