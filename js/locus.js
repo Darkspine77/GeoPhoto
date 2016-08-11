@@ -60,22 +60,11 @@ var database = firebase.database().ref('images/');
 var click = false;
 
 
-function checkName(file) {
-    if(storageRef.child('images/' + file.name) != null){
-        trials += 1
-        file.name = trials + file.name
-    } else {
-        return file.name
-    }
-}
-
 function upload() {
     var name = account.User;
     var geo = $('#geo').val();
     if($('#file2').val() != "" || geo != ""){
         var file = document.getElementById("file2").files[0];
-        var trials = 0
-        file.name = checkName(file)
         // We can use the 'name' property on the File API to get our file name
         var uploadTask = storageRef.child('images/' + file.name).put(file);
         uploadTask.on('state_changed', function(snapshot){
