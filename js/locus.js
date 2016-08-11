@@ -33,6 +33,7 @@ navigator.geolocation.getCurrentPosition(function(position){
     coords.push(lon);
     var geocoder = new google.maps.Geocoder;
     geocodeLatLng(geocoder);
+    console.log("asdsads");
 
 
       function geocodeLatLng(geocoder) {
@@ -41,7 +42,6 @@ navigator.geolocation.getCurrentPosition(function(position){
           if (status === 'OK') {
             var locinfo = results[1].formatted_address.split(',')
             area = locinfo[0];
-            console.log("asdsads");
             console.log(area);
         }
       });
