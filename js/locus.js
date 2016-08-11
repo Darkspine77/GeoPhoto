@@ -134,6 +134,10 @@ function likeme(id) {
         var snap = snape.val();
         var likes = snap.like + 1;
         like.set({
+            'name': snap.name,
+            'locus': snap.locus,
+            'coords': snap.coords,
+            'image': snap.image,
             'like': likes
         })
     });
