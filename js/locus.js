@@ -113,37 +113,32 @@ function upload() {
     }
 }
 
-database.on('child_added',function(dataRow){
+database.on('child_added', function(dataRow) {
 	//getting raw values
-  	var row = dataRow.val();
+	var row = dataRow.val();
   	//adding to the div
-    withinLat = row.coords[0] < (lat + .00723) && row.coords[0] > (lat - .00723);
-    withinLon = row.coords[1] < (lon + .00723) && row.coords[1] > (lon - .00723);
-    if(withinLon && withinLat){
-        $(".locus").append(
-            '<div class="photo"><div class="info"><h2 class="user">' + row.name + '|' + row.locus +
-            '</h2><button type="button" name="button" class="button" onclick="likeme(' + "'" + dataRow.key + "'" +
-            ')">like</button><h2 class="likes">' + row.like +
-            '</h2></div><div class="center"><img src="' + row.image + '" class="width"/></div></div>'
-        );
-    }
-})
+  	withinLat = row.coords[0] < (lat + .00723) && row.coords[0] > (lat - .00723);
+  	withinLon = row.coords[1] < (lon + .00723) && row.coords[1] > (lon - .00723);
+    	
+    	if(withinLon && withinLat) {
+	        $(".locus").append(
+	            '<div id="' + dataRow.key + '" class="photo"><div class="info"><h2 class="user">' + row.name + '|' + row.locus +
+	            '</h2><button type="button" name="button" class="button" onclick="likeme(' + "'" + dataRow.key + "'" +
+	            ')">like</button><h2 class="likes">' + row.like +
+	            '</h2></div><div class="center"><img src="' + row.image + '" class="width"/></div></div>'
+	        );
+    	}
+});
 
 function likeme(id) {
     var like = firebase.database().ref('images/' + id);
-    var asd = 1021;
-    like.on('value', function(snape) {
-        var snap = snape.val();
-        var likes = snap.like + 1;
-        like.set({
-            'name': snap.name,
-            'locus': snap.locus,
-            'coords': snap.coords,
-            'image': snap.image,
+    like.once('value').then(function(snapshot) {
+    	var likes = (snapshot.val().like + 1);
+        like.update({
             'like': likes
-        })
+        });
+        $("#" + id + ".likes").eq(0).text(likes);
     });
-    console.log("clicked worked");
 }
 
 $("#cancel").click(function() {
