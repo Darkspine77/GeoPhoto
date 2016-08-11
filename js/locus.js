@@ -59,11 +59,23 @@ var storageRef = firebase.storage().ref();
 var database = firebase.database().ref('images/');
 var click = false;
 
+
+function checkName(file) {
+    if(storageRef.child('images/' + file.name) != null){
+        trials += 1
+        file.name = trials + file.name
+    } else {
+        return file.name
+    }
+}
+
 function upload() {
     var name = account.User;
     var geo = $('#geo').val();
     if($('#file2').val() != "" || geo != ""){
         var file = document.getElementById("file2").files[0];
+        var trials = 0
+        file.name = checkName(file)
         // We can use the 'name' property on the File API to get our file name
         var uploadTask = storageRef.child('images/' + file.name).put(file);
         uploadTask.on('state_changed', function(snapshot){
@@ -95,7 +107,7 @@ function upload() {
 database.on('child_added',function(dataRow){
 	//getting raw values
   	var row = dataRow.val();
-    console.log(dataRow.name);
+    console.log(dataRow);
   	//adding to the div
     withinLat = row.coords[0] < (lat + .00723) && row.coords[0] > (lat - .00723);
     withinLon = row.coords[1] < (lon + .00723) && row.coords[1] > (lon - .00723);
