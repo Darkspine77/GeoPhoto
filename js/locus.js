@@ -137,7 +137,6 @@ function likeme(id) {
         var data = snapshot.val();
         var liked = false;
         console.log(data.userlike);
-        console.log(data.userlike.length);
         for (var i = 0; i < (data.userlike.length - 1); i++) {
             console.log(data.userlike[i]);
             console.log(i);
