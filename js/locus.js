@@ -137,15 +137,24 @@ function likeme(id) {
         var data = snapshot.val()
         console.log(data.userlike);
         console.log(data.userlike.length);
-        for (var i = 1; i < (data.userlike.length - 1); i++) {
+        for (var i = 0; i < (data.userlike.length - 1); i++) {
             console.log(data.userlike.i);
             console.log(i);
-            console.log(456);
-            var likes = (data.like + 1);
-            like.update({
-                'like': likes
-            });
-            $("#" + id + " .likes").eq(0).text(likes);
+            if (data.userlike[i] == account.User) {
+                console.log(123);
+                var likes = (data.like - 1);
+                like.update({
+                    'like': likes
+                });
+                $("#" + id + " .likes").eq(0).text(likes);
+            } else {
+                console.log(456);
+                var likes = (data.like + 1);
+                like.update({
+                    'like': likes
+                });
+                $("#" + id + " .likes").eq(0).text(likes);
+            }
         }
     });
 }
