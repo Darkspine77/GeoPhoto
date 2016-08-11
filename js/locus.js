@@ -133,11 +133,11 @@ function likeme(id) {
     like.on('value', function(snap) {
         console.log(snap.val());
         console.log(snap.key);
-        console.log(snap.name);
-        console.log(snap.locus);
-        console.log(snap.coords);
-        console.log(snap.image);
-        console.log(snap.like);
+        console.log(snap['name']);
+        console.log(snap['locus']);
+        console.log(snap['coords']);
+        console.log(snap['image']);
+        console.log(snap['like']);
         var likes = snap.like + 1
         like.set({
             'name': snap.name,
