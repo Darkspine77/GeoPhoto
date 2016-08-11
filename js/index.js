@@ -70,7 +70,7 @@ function login(){
            account = btoa(account);
            //save the encoded accout to web storage
            localStorage.setItem('_account', account);
-            document.location.href = "feed.html";
+            document.location.href = "locus.html";
 
     }
 }
