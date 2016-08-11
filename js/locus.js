@@ -30,6 +30,19 @@ navigator.geolocation.getCurrentPosition(function(position){
     //console.log(url);
     coords.push(lat);
     coords.push(lon);
+    var geocoder = new google.maps.Geocoder;
+    location = geocodeLatLng(geocoder);
+
+
+      function geocodeLatLng(geocoder) {
+        var latlng = {lat: parseFloat(coords[0]), lng: parseFloat(coords[1])};
+        geocoder.geocode({'location': latlng}, function(results, status) {
+          if (status === 'OK') {
+            var locinfo = results[1].formatted_address.split(',')
+            return = locinfo[0]
+        }
+      });
+      }
 });
 
 //function print(obj) {
@@ -61,7 +74,6 @@ var click = false;
 
 function upload() {
     var name = account.User;
-    var geo = $('#geo').val();
     if($('#file2').val() != "" || geo != ""){
         var file = document.getElementById("file2").files[0];
         // We can use the 'name' property on the File API to get our file name
@@ -72,7 +84,7 @@ function upload() {
             var img = uploadTask.snapshot.downloadURL;
             database.push({
                 'name':name,
-                'locus': geo,
+                'locus': location,
                 'coords': coords,
                 'image': img,
                 'like': like
