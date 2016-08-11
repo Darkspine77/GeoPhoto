@@ -105,6 +105,10 @@ database.on('child_added',function(dataRow){
             '</h2></div><div class="center"><img src="' + row.image + '" class="width"/></div></div>'
         );
     }
+    console.log(row);
+    console.log(database);
+    console.log(dataRow.parent.toString());
+    console.log(row.key);
 })
 
 $("#cancel").click(function() {
