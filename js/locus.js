@@ -82,7 +82,6 @@ var click = false;
 function upload() {
     var name = account.User;
     var like = 0;
-    console.log(id)
     if($('#file2').val() != "" || geo != ""){
         var file = document.getElementById("file2").files[0];
         // We can use the 'name' property on the File API to get our file name
