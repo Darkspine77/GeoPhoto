@@ -28,7 +28,7 @@
     coords.push(lat);
     coords.push(lon);
     console.log(coords)
-    geocoder.geocode({'location': coords}, function(results, status) {
+    geocode({'location': coords}, function(results, status) {
           if (status === 'OK') {
             if (results[1]) {
               console.log(results)
@@ -38,6 +38,18 @@
           }
         });
 });
+
+      function geocodeLatLng(geocoder) {
+        geocoder.geocode({'location': coords}, function(results, status) {
+          if (status === 'OK') {
+            if (results[1]) {
+              console.log(results)
+            }
+          } else {
+
+          }
+        });
+      }
     </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEsvrSNb5sT_P-hcVuaHO0j8bCYjpBrsY">
