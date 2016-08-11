@@ -8,7 +8,7 @@ var location;
 account = localStorage.getItem('_account');
 if(account == null){
     alert("This content is only avaliable to users who have logged in")
-    // document.location.href = "index.html";
+    document.location.href = "index.html";
 }
 localStorage.removeItem('_account');
 //decodes a string data encoded using base-64
@@ -30,19 +30,19 @@ navigator.geolocation.getCurrentPosition(function(position){
     //console.log(url);
     coords.push(lat);
     coords.push(lon);
-    // var geocoder = new google.maps.Geocoder;
-    // geocodeLatLng(geocoder);
+    var geocoder = new google.maps.Geocoder;
+    geocodeLatLng(geocoder);
 
 
-    //   function geocodeLatLng(geocoder) {
-    //     var latlng = {lat: parseFloat(coords[0]), lng: parseFloat(coords[1])};
-    //     geocoder.geocode({'location': latlng}, function(results, status) {
-    //       if (status === 'OK') {
-    //         var locinfo = results[1].formatted_address.split(',')
-    //         console.log(locinfo[0])
-    //     }
-    //   });
-    //   }
+      function geocodeLatLng(geocoder) {
+        var latlng = {lat: parseFloat(coords[0]), lng: parseFloat(coords[1])};
+        geocoder.geocode({'location': latlng}, function(results, status) {
+          if (status === 'OK') {
+            var locinfo = results[1].formatted_address.split(',')
+            console.log(locinfo[0])
+        }
+      });
+      }
 });
 
 
