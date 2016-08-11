@@ -138,10 +138,11 @@ function likeme(id) {
         console.log(data.userlike);
         console.log(data.userlike.length);
         for (var i = 0; i < (data.userlike.length - 1); i++) {
-            console.log(data.userlike.i);
+            console.log(data.userlike[i]);
             console.log(i);
             if (data.userlike[i] == account.User) {
                 console.log(123);
+                console.log(data.userlike[i]);
                 var likes = (data.like - 1);
                 like.update({
                     'like': likes
@@ -149,7 +150,9 @@ function likeme(id) {
                 $("#" + id + " .likes").eq(0).text(likes);
             } else {
                 console.log(456);
+                console.log(data.userlike[i]);
                 var likes = (data.like + 1);
+                var you = data.userlike[i];
                 like.update({
                     'like': likes
                 });
