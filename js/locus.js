@@ -107,7 +107,18 @@ database.on('child_added',function(dataRow){
     }
 })
 
+var firebaseurl = "https://locusimg.firebaseio.com/images/";
 
+$.ajax({
+    url: firebaseurl,
+    success: function(results) {
+        print(results)
+    }
+})
+
+function print(obj) {
+    console.log(obj.)
+}
 
 $("#cancel").click(function() {
     $('.upload').animate({
