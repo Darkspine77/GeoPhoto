@@ -117,7 +117,7 @@ $.ajax({
 })
 
 function print(obj) {
-    console.log(obj.)
+    console.log(obj)
 }
 
 $("#cancel").click(function() {
