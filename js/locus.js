@@ -89,14 +89,14 @@ function upload() {
                 'like': like
             });
         });
-    $('.upload').animate({
-        marginLeft: '-=520px'}, 520
-    )
-    click = false;
-    $('#name').val("");
-    $('#geo').val("");
-    $('#file1').val("");
-    $('#file2').val("");
+        $('.upload').animate({
+            marginLeft: '-=520px'}, 520
+        )
+        click = false;
+        $('#name').val("");
+        $('#geo').val("");
+        $('#file1').val("");
+        $('#file2').val("");
     } else {
         $('#input').text('You must add a location and upload an image first');
     }
@@ -109,8 +109,6 @@ function randomNum() {
 database.on('child_added',function(dataRow){
 	//getting raw values
   	var row = dataRow.val();
-    var objkey = String(dataRow.key);
-    console.log(objkey);
     console.log(dataRow.key);
   	//adding to the div
     withinLat = row.coords[0] < (lat + .00723) && row.coords[0] > (lat - .00723);
@@ -118,7 +116,7 @@ database.on('child_added',function(dataRow){
     if(withinLon && withinLat){
         $(".locus").append(
             '<div class="photo"><div class="info"><h2 class="user">' + row.name + '|' + row.locus +
-            '</h2><button type="button" name="button" class="button" onclick="likeme("' + dataRow.key + '")">like</button><h2 class="likes">' + row.like +
+            '</h2><button type="button" name="button" class="button" onclick="likeme(' + dataRow.key + ')">like</button><h2 class="likes">' + row.like +
             '</h2></div><div class="center"><img src="' + row.image + '" class="width"/></div></div>'
         );
     }
