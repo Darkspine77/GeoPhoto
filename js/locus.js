@@ -5,7 +5,7 @@ var img;
 var url;
 var location;
 var area;
-/*
+
 account = localStorage.getItem('_account');
 if(account == null){
     alert("This content is only avaliable to users who have logged in")
@@ -47,7 +47,6 @@ navigator.geolocation.getCurrentPosition(function(position){
       });
       }
 });
-*/
 
 // window.onbeforeunload = function(event) {
 //     account = JSON.stringify(account);
@@ -120,7 +119,7 @@ database.on('child_added', function(dataRow) {
   	withinLat = row.coords[0] < (lat + .00723) && row.coords[0] > (lat - .00723);
   	withinLon = row.coords[1] < (lon + .00723) && row.coords[1] > (lon - .00723);
     	
-    	if(true) {
+    	if(withinLat && withinLon) {
 	        $(".locus").append(
 	            '<div id="' + dataRow.key + '" class="photo"><div class="info"><h2 class="user">' + row.name + '|' + row.locus +
 	            '</h2><button type="button" name="button" class="button" onclick="likeme(' + "'" + dataRow.key + "'" +
@@ -137,7 +136,7 @@ function likeme(id) {
         like.update({
             'like': likes
         });
-        $("#" + id + ".likes").eq(0).text(likes);
+        $("#" + id + " .likes").eq(0).text(likes);
     });
 }
 
