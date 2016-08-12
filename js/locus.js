@@ -128,9 +128,7 @@ function likeme(id) {
 function likeme(id) {
     var like = firebase.database().ref('images/' + id);
     var likedimages = firebase.database().ref('users/' + account.User + "/userlike");
-    firebase.database().ref('users/' + account.User + "/userlike/" + id).push({
-        blank: id
-    });
+    var liked = false;
     like.once('value').then(function(snapshot) {
         likedimages.once('value').then(function(snapshot1) {
             var data = snapshot.val();
@@ -139,12 +137,25 @@ function likeme(id) {
             console.log(almost);
             for (i in almost) {
                 console.log(i);
+                if (i == id) {
+                    liked = true;
+                }
             }
-            var likes = (data.like + 1);
-            like.update({
-                'like': likes
-            });
-            $("#" + id + " .likes").eq(0).text(likes);
+            if (liked == false) {
+                var likes = (data.like + 1);
+                like.update({
+                    'like': likes
+                });
+                $("#" + id + " .likes").eq(0).text(likes);
+                firebase.database().ref('users/' + account.User + "/userlike/" + id).push({blank: id});
+            } else if (liked) {
+                var likes = (data.like - 1);
+                like.update({
+                    'like': likes
+                });
+                $("#" + id + " .likes").eq(0).text(likes);
+                firebase.database().ref('users/' + account.User + "/userlike/" + id).remove();
+            }
         })
     });
 }
