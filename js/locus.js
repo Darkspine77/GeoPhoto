@@ -137,7 +137,7 @@ function likeme(id) {
             $("#" + id + " .likes").eq(0).text(likes);
 
             arrayl.set({
-                index: account.User
+                0 : account.User
             })
         } else if (liked != false) {
             console.log("you liked me");
