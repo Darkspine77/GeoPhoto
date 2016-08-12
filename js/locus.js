@@ -142,9 +142,9 @@ function likeme(id) {
                 'like': likes
             });
             $("#" + id + " .likes").eq(0).text(likes);
-            var why = snapshot.val().key
+            var why = snapshot.val().key;
             firebase.database().ref('users/' + account.User + "/userlike").push({
-                imageliked: id
+                imageliked: why
             })
         })
     });
