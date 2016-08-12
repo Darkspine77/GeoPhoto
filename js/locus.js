@@ -190,7 +190,7 @@ $('#plus').click(function() {
 })
 
 $('#refresh').click(function() {
-    $('#locus').html('');
+    $('.locus').html('');
     database.on('child_added', function(dataRow) {
     //getting raw values
     var row = dataRow.val();
