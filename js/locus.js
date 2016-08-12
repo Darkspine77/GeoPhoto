@@ -41,7 +41,6 @@ var click = false;
 function upload() {
     var name = account.User;
     var like = 0;
-    var userlike = ["blank"];
     if($('#file2').val() != ""){
         var file = document.getElementById("file2").files[0];
         // We can use the 'name' property on the File API to get our file name
@@ -53,7 +52,6 @@ function upload() {
             database.push({
                 'name': name,
                 'locus': area,
-                'userlike': userlike,
                 'coords': coords,
                 'image': img,
                 'like': like
@@ -143,9 +141,7 @@ function likeme(id) {
             });
             $("#" + id + " .likes").eq(0).text(likes);
             var why = snapshot.val().key;
-            firebase.database().ref('users/' + account.User + "/userlike/" + id).push({
-                imageliked: why
-            })
+            firebase.database().ref('users/' + account.User + "/userlike/" + id).push({})
         })
     });
 }
