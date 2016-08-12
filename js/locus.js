@@ -191,6 +191,7 @@ $('#plus').click(function() {
 
 $('#refresh').click(function() {
     $('.locus').html('');
+    console.log('registered')
     database.on('child_added', function(dataRow) {
     //getting raw values
     var row = dataRow.val();
