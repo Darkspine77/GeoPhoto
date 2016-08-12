@@ -103,14 +103,10 @@ function likeme(id) {
         var data = snapshot.val();
         var liked = false;
         var index;
-        console.log(liked);
         for (var i = 0; i < (data.userlike.length - 1); i++) {
-            console.log(data.userlike[i].key);
-            index = data.userlike[i].key;
             if (data.userlike[i] == account.User) {
                 liked = true;
-                console.log(liked);
-                index = data.userlike[i].key;
+                index = i;
             }
         }
         if (liked) {
@@ -131,8 +127,8 @@ function likeme(id) {
                 'like': likes
             });
             $("#" + id + " .likes").eq(0).text(likes);
-            firebase.database().ref('images/' + id + "/userlike").push({
-                'name': account.User
+            firebase.database().ref('images/' + id + "/userlike/" + data.userlike.length).push({
+                data.userlike.length: account.User
             })
         }
     });
