@@ -4,6 +4,18 @@ var coords = [];
 var location;
 var area;
 
+
+function guid() {
+ function s4() {
+   return Math.floor((1 + Math.random()) * 0x10000)
+     .toString(16)
+     .substring(1);
+ }
+ return s4() + s4() + s4() + s4() + s4() + s4() + s4() + s4();
+}
+
+
+
 account = localStorage.getItem('_account');
 if(account == null){
     document.location.href = "index.html";
@@ -43,8 +55,9 @@ function upload() {
     var like = 0;
     if($('#file2').val() != ""){
         var file = document.getElementById("file2").files[0];
+        var ranId = guid()
         // We can use the 'name' property on the File API to get our file name
-        var uploadTask = storageRef.child('images/' + file.name).put(file);
+        var uploadTask = storageRef.child('images/' + ranId + file.name).put(file);
         uploadTask.on('state_changed', function(snapshot){
         }, function(error) {
         }, function() {
