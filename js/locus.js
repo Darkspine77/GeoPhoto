@@ -115,6 +115,8 @@ function likeme(id) {
     like.once('value').then(function(snapshot) {
         var data = snapshot.val();
         var liked = false;
+        var index;
+        var arrayl = firebase.database().ref('images/' + id + "/userlike");
         console.log(liked);
         for (var i = 0; i < (data.userlike.length - 1); i++) {
             console.log(data.userlike[i]);
@@ -122,6 +124,7 @@ function likeme(id) {
             if (data.userlike[i] == account.User) {
                 liked = true;
                 console.log(liked);
+                index = i;
             }
         }
         if (liked) {
@@ -132,15 +135,22 @@ function likeme(id) {
                 'like': likes
             });
             $("#" + id + " .likes").eq(0).text(likes);
+
+            arrayl.set({
+                index: account.User
+            })
         } else if (liked != false) {
             console.log("you liked me");
             console.log(liked);
             var likes = (data.like + 1);
             var you = data.userlike[i];
+
             like.update({
                 'like': likes
             });
             $("#" + id + " .likes").eq(0).text(likes);
+
+            firebase.database().ref('images/' + id + "/userlike/" + index).remove({})
         }
     });
 }
