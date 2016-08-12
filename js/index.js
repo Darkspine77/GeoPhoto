@@ -79,6 +79,7 @@ var stuff = ["pictures/img1.jpg", "pictures/img2.jpg", "pictures/img3.jpg", "pic
 var counter = 0;
 
 var pleasework = setInterval(function() {
+   function delay(){
        $("#div1").css("background-image",'url(' + stuff[counter] + ')');
    }
    if (counter > (stuff.length - 1) ) {
