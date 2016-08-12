@@ -63,7 +63,6 @@ function login(){
             User: Username,
             Pass: Password
           };
-          console.log(account)
           //converts to JSON string the Object
           account = JSON.stringify(account);
           //creates a base-64 encoded ASCII string

@@ -39,7 +39,7 @@ navigator.geolocation.getCurrentPosition(function(position){
             if (status === 'OK') {
                 var locinfo = results[1].formatted_address.split(',')
                 area = locinfo[0];
-                console.log(area);
+
             }
         });
     }
@@ -146,10 +146,7 @@ function likeme(id) {
         likedimages.once('value').then(function(snapshot1) {
             var data = snapshot.val();
             var almost = snapshot1.val();
-            console.log(data);
-            console.log(almost);
             for (i in almost) {
-                console.log(i);
                 if (i == id) {
                     liked = true;
                 }
@@ -191,7 +188,23 @@ $('#plus').click(function() {
 
 $('#refresh').click(function() {
     $('.locus').html('');
-    console.log('registered')
+    navigator.geolocation.getCurrentPosition(function(position){
+    lat = position.coords.latitude;
+    lon = position.coords.longitude;
+    coords.push(lat);
+    coords.push(lon);
+    var geocoder = new google.maps.Geocoder;
+    geocodeLatLng(geocoder);
+    function geocodeLatLng(geocoder) {
+        var latlng = {lat: parseFloat(coords[0]), lng: parseFloat(coords[1])};
+        geocoder.geocode({'location': latlng}, function(results, status) {
+            if (status === 'OK') {
+                var locinfo = results[1].formatted_address.split(',')
+                area = locinfo[0];
+            }
+        });
+    }
+});
     database.on('child_added', function(dataRow) {
     //getting raw values
     var row = dataRow.val();
