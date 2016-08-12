@@ -126,22 +126,23 @@ function likeme(id) {
 */
 
 function likeme(id) {
+    firebase.database().ref('users/' + account.User + "/userlike/" + id).push();
     var like = firebase.database().ref('images/' + id);
     var likedimages = firebase.database().ref('users/' + account.User + "/userlike");
     like.once('value').then(function(snapshot) {
         likedimages.once('value').then(function(snapshot1) {
             var data = snapshot.val();
             var almost = snapshot1.val();
+            console.log(data);
+            console.log(almost);
             for (i in almost) {
-                console.log(almost);
+                console.log(i);
             }
             var likes = (data.like + 1);
             like.update({
                 'like': likes
             });
             $("#" + id + " .likes").eq(0).text(likes);
-            var why = snapshot.val().key;
-            firebase.database().ref('users/' + account.User + "/userlike/" + id).push({})
         })
     });
 }
