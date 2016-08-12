@@ -30,12 +30,15 @@ function onSignIn(googleUser) {
 };
 
 function signup(){
-   var Username = $("#username").val();
-   var Password = $("#password").val();
-   firebase.database().ref('users/' + Username).set({
-       'Username': Username,
-       'Password': Password
-   });
+    var Username = $("#username").val();
+    var Password = $("#password").val();
+    firebase.database().ref('users/' + Username).set({
+        'Username': Username,
+        'Password': Password,
+    });
+    firebase.database().ref('users/' + Username + '/userlike').set({
+        'blank': blank
+    });
 }
 
 function login(){
@@ -84,5 +87,4 @@ var pleasework = setInterval(function() {
    $("#div1").fadeIn(1500);
    setTimeout(delay,1500)
    counter++;
-
 }, 5000);
