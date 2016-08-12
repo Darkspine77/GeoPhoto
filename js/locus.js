@@ -1,14 +1,11 @@
 var lat;
 var lon;
-var coords = []
-var img;
-var url;
+var coords = [];
 var location;
 var area;
 
 account = localStorage.getItem('_account');
 if(account == null){
-    alert("This content is only avaliable to users who have logged in")
     document.location.href = "index.html";
 }
 localStorage.removeItem('_account');
@@ -24,7 +21,6 @@ navigator.geolocation.getCurrentPosition(function(position){
     coords.push(lon);
     var geocoder = new google.maps.Geocoder;
     geocodeLatLng(geocoder);
-
     function geocodeLatLng(geocoder) {
         var latlng = {lat: parseFloat(coords[0]), lng: parseFloat(coords[1])};
         geocoder.geocode({'location': latlng}, function(results, status) {
@@ -44,15 +40,6 @@ var config = {
     storageBucket: "locusimg.appspot.com",
 };
 firebase.initializeApp(config);
-
-function guid() {
-    function s4() {
-        return Math.floor((1 + Math.random()) * 0x10000)
-        .toString(16)
-        .substring(1);
-    }
-    return s4() + s4() + s4() + s4() + s4() + s4() + s4() + s4();
-}
 
 // Create a root reference
 var storageRef = firebase.storage().ref();
@@ -135,22 +122,15 @@ function likeme(id) {
                 'like': likes
             });
             $("#" + id + " .likes").eq(0).text(likes);
-
-            arrayl.set({
-                0 : account.User
-            })
         } else if (liked != false) {
             console.log("you liked me");
             console.log(liked);
             var likes = (data.like + 1);
             var you = data.userlike[i];
-
             like.update({
                 'like': likes
             });
             $("#" + id + " .likes").eq(0).text(likes);
-
-            firebase.database().ref('images/' + id + "/userlike/" + index).remove({})
         }
     });
 }
