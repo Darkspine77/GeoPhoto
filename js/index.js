@@ -80,8 +80,8 @@ var pleasework = setInterval(function() {
    if (counter > (stuff.length - 1) ) {
        counter = 0;
    }
-   $("#div1").fadeOut(1500);
-   $("#div1").fadeIn(1500);
+   $("body").fadeOut(1500);
+   $("body").fadeIn(1500);
    setTimeout(delay,1500)
    counter++;
 

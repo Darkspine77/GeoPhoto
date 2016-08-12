@@ -126,6 +126,7 @@ function likeme(id) {
     });
 }
 */
+
 function likeme(id) {
     var like = firebase.database().ref('images/' + id);
     like.once('value').then(function(snapshot) {
