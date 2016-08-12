@@ -143,7 +143,7 @@ function likeme(id) {
             });
             $("#" + id + " .likes").eq(0).text(likes);
             var why = snapshot.val().key;
-            firebase.database().ref('users/' + account.User + "/userlike").push({
+            firebase.database().ref('users/' + account.User + "/userlike/" + id).push({
                 imageliked: why
             })
         })
