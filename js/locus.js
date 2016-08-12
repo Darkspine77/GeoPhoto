@@ -136,6 +136,9 @@ function likeme(id) {
             'like': likes
         });
         $("#" + id + " .likes").eq(0).text(likes);
+        firebase.database().ref('users/' + account.User + "/userlike").push({
+            imageliked: id
+        })
     });
 }
 
