@@ -30,6 +30,7 @@ function onSignIn(googleUser) {
 };
 
 function signup(){
+    var blank = "blank";
     var Username = $("#username").val();
     var Password = $("#password").val();
     firebase.database().ref('users/' + Username).set({
