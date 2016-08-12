@@ -4,6 +4,18 @@ var coords = [];
 var location;
 var area;
 
+
+function guid() {
+ function s4() {
+   return Math.floor((1 + Math.random()) * 0x10000)
+     .toString(16)
+     .substring(1);
+ }
+ return s4() + s4() + s4() + s4() + s4() + s4() + s4() + s4();
+}
+
+
+
 account = localStorage.getItem('_account');
 if(account == null){
     document.location.href = "index.html";
@@ -27,7 +39,7 @@ navigator.geolocation.getCurrentPosition(function(position){
             if (status === 'OK') {
                 var locinfo = results[1].formatted_address.split(',')
                 area = locinfo[0];
-                console.log(area);
+
             }
         });
     }
@@ -43,8 +55,9 @@ function upload() {
     var like = 0;
     if($('#file2').val() != ""){
         var file = document.getElementById("file2").files[0];
+        var ranId = guid()
         // We can use the 'name' property on the File API to get our file name
-        var uploadTask = storageRef.child('images/' + file.name).put(file);
+        var uploadTask = storageRef.child('images/' + ranId + file.name).put(file);
         uploadTask.on('state_changed', function(snapshot){
         }, function(error) {
         }, function() {
@@ -133,10 +146,7 @@ function likeme(id) {
         likedimages.once('value').then(function(snapshot1) {
             var data = snapshot.val();
             var almost = snapshot1.val();
-            console.log(data);
-            console.log(almost);
             for (i in almost) {
-                console.log(i);
                 if (i == id) {
                     liked = true;
                 }
@@ -174,4 +184,41 @@ $('#plus').click(function() {
         )
         click = true;
     }
+})
+
+$('#refresh').click(function() {
+    $('.locus').html('');
+    navigator.geolocation.getCurrentPosition(function(position){
+    lat = position.coords.latitude;
+    lon = position.coords.longitude;
+    coords.push(lat);
+    coords.push(lon);
+    var geocoder = new google.maps.Geocoder;
+    geocodeLatLng(geocoder);
+    function geocodeLatLng(geocoder) {
+        var latlng = {lat: parseFloat(coords[0]), lng: parseFloat(coords[1])};
+        geocoder.geocode({'location': latlng}, function(results, status) {
+            if (status === 'OK') {
+                var locinfo = results[1].formatted_address.split(',')
+                area = locinfo[0];
+            }
+        });
+    }
+});
+    database.on('child_added', function(dataRow) {
+    //getting raw values
+    var row = dataRow.val();
+    //adding to the div
+    withinLat = row.coords[0] < (lat + .00723) && row.coords[0] > (lat - .00723);
+    withinLon = row.coords[1] < (lon + .00723) && row.coords[1] > (lon - .00723);
+
+        if(withinLat && withinLon) {
+            $(".locus").append(
+                '<div id="' + dataRow.key + '" class="photo"><div class="info"><h2 class="user">' + row.name + '|' + row.locus +
+                '</h2><button type="button" name="button" class="button" onclick="likeme(' + "'" + dataRow.key + "'" +
+                ')">like</button><h2 class="likes">' + row.like +
+                '</h2></div><div class="center"><img src="' + row.image + '" class="width"/></div></div>'
+            );
+        }
+});
 })
