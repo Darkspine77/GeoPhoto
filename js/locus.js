@@ -124,7 +124,7 @@ function likeme(id) {
                 console.log(liked);
             }
         }
-        if (liked != true) {
+        if (liked) {
             console.log("you liked it already");
             console.log(liked);
             var likes = (data.like - 1);
@@ -132,7 +132,7 @@ function likeme(id) {
                 'like': likes
             });
             $("#" + id + " .likes").eq(0).text(likes);
-        } else if (liked) {
+        } else if (liked != false) {
             console.log("you liked me");
             console.log(liked);
             var likes = (data.like + 1);
