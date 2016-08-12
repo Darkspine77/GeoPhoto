@@ -1,21 +1,24 @@
 .div1 {
   position:absolute;
-  z-index:1; 
+  z-index:1;
   background: url(../pictures/img6.jpg);
   width:100vw;
   height:100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 body {
   font-family: 'Scope One', sans-serif;
   color: white;
   margin: 0;
-  background-position: center;
 }
 
 h1 {
   margin: 15px;
-  font-size: 64px;
+  font-size: 8em;
+  height: 120px;
   color: rgb(255, 160, 0);
 }
 
@@ -34,6 +37,7 @@ p {
   font-family: 'Open Sans', sans-serif;
   margin-top: 5px;
   margin-bottom: 5px;
+  font-size: 1.25em;
   color: red;
 }
 
@@ -44,7 +48,7 @@ p {
   color: #FFFFFF ;
   text-align: center;
   font-size: 15px;
-  padding: .1px;
+  padding: 15px;
   width: 100px;
   transition: all 0.5s;
   cursor: pointer;
@@ -86,7 +90,7 @@ p {
   margin-right: auto;
   left: 0;
   right: 0;
-  margin-top:175px;
+  margin-top:250px;
   background-color: rgba(255, 255, 255, .7);
   color: black;
   width: 600px;
@@ -100,7 +104,7 @@ p {
   background-color: white;
   padding: 10px;
   margin: 10px;
-  font-size: 14px;
+  font-size: 1.25em;
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
