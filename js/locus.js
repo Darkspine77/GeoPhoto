@@ -135,7 +135,7 @@ function likeme(id) {
             var data = snapshot.val();
             var almost = snapshot1.val();
             for (i in almost) {
-                console.log(i);
+                console.log(i.imageliked);
             }
             var likes = (data.like + 1);
             like.update({
