@@ -128,7 +128,7 @@ function likeme(id) {
             });
             $("#" + id + " .likes").eq(0).text(likes);
             firebase.database().ref('images/' + id + "/userlike/" + data.userlike.length).push({
-                data.userlike.length: account.User
+                no : account.User
             })
         }
     });
