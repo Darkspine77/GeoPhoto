@@ -131,17 +131,20 @@ function likeme(id) {
     var like = firebase.database().ref('images/' + id);
     var likedimages = firebase.database().ref('users/' + account.User + "/userlike");
     like.once('value').then(function(snapshot) {
-        var data = snapshot.val();
-        for (i in likedimages) {
-            console.log(i);
-        }
-        var likes = (data.like + 1);
-        like.update({
-            'like': likes
-        });
-        $("#" + id + " .likes").eq(0).text(likes);
-        firebase.database().ref('users/' + account.User + "/userlike").push({
-            imageliked: id
+        likedimages.once('value').then(function(snapshot1) {
+            var data = snapshot.val();
+            var almost = snapshot1.val();
+            for (i in almost) {
+                console.log(i);
+            }
+            var likes = (data.like + 1);
+            like.update({
+                'like': likes
+            });
+            $("#" + id + " .likes").eq(0).text(likes);
+            firebase.database().ref('users/' + account.User + "/userlike").push({
+                imageliked: id
+            })
         })
     });
 }
