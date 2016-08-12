@@ -20,42 +20,22 @@ account = JSON.parse(account);
 navigator.geolocation.getCurrentPosition(function(position){
     lat = position.coords.latitude;
     lon = position.coords.longitude;
-    // this the section where i tried to use the location for display but fail// here Jamal
-    //url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lon + "&key=AIzaSyC73wjATYJAPLcNV5Q1P69IPZvZWXV8biE";
-    //$.ajax({
-    //    url: url,
-    //    success: function(result) {
-    //        print(result);
-    //    },
-    //})
-    //console.log(url);
     coords.push(lat);
     coords.push(lon);
     var geocoder = new google.maps.Geocoder;
     geocodeLatLng(geocoder);
-    console.log("asdsads");
 
-
-      function geocodeLatLng(geocoder) {
+    function geocodeLatLng(geocoder) {
         var latlng = {lat: parseFloat(coords[0]), lng: parseFloat(coords[1])};
         geocoder.geocode({'location': latlng}, function(results, status) {
-          if (status === 'OK') {
-            var locinfo = results[1].formatted_address.split(',')
-            area = locinfo[0];
-            console.log(area);
-        }
-      });
-      }
+            if (status === 'OK') {
+                var locinfo = results[1].formatted_address.split(',')
+                area = locinfo[0];
+                console.log(area);
+            }
+        });
+    }
 });
-
-// window.onbeforeunload = function(event) {
-//     account = JSON.stringify(account);
-//     //creates a base-64 encoded ASCII string
-//     account = btoa(account);
-//     //save the encoded accout to web storage
-//     localStorage.setItem('_account', account);
-//     alert("saving")
-// };
 
 var config = {
     apiKey: "AIzaSyA1n9MmgGXH8mUX8YCcpj8-tuzDW8Y3wVc",
@@ -76,7 +56,6 @@ function guid() {
 
 // Create a root reference
 var storageRef = firebase.storage().ref();
-
 var database = firebase.database().ref('images/');
 var click = false;
 
@@ -136,17 +115,18 @@ function likeme(id) {
     like.once('value').then(function(snapshot) {
         var data = snapshot.val();
         var liked = false;
-        console.log(data.userlike);
+        console.log(liked);
         for (var i = 0; i < (data.userlike.length - 1); i++) {
             console.log(data.userlike[i]);
-            console.log(i);
+            console.log(liked);
             if (data.userlike[i] == account.User) {
                 liked = true;
+                console.log(liked);
             }
         }
         if (liked != true) {
-            console.log(123);
             console.log("you liked it already");
+            console.log(liked);
             var likes = (data.like - 1);
             like.update({
                 'like': likes
@@ -154,7 +134,7 @@ function likeme(id) {
             $("#" + id + " .likes").eq(0).text(likes);
         } else if (liked) {
             console.log("you liked me");
-            console.log(data.userlike[i]);
+            console.log(liked);
             var likes = (data.like + 1);
             var you = data.userlike[i];
             like.update({
