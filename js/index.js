@@ -1,8 +1,8 @@
 var config = {
-   apiKey: "AIzaSyAonQbZOHwhSRXNzcNBaI2cch0MKs-SSVk",
-   authDomain: "locus-7167b.firebaseapp.com",
-   databaseURL: "https://locus-7167b.firebaseio.com",
-   storageBucket: "locus-7167b.appspot.com",
+    apiKey: "AIzaSyA1n9MmgGXH8mUX8YCcpj8-tuzDW8Y3wVc",
+    authDomain: "locusimg.firebaseapp.com",
+    databaseURL: "https://locusimg.firebaseio.com",
+    storageBucket: "locusimg.appspot.com",
 };
 firebase.initializeApp(config);
 
