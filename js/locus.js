@@ -59,7 +59,7 @@ function upload() {
         }, function() {
             var img = uploadTask.snapshot.downloadURL;
             database.push({
-                'name':name,
+                'name': name,
                 'locus': area,
                 'userlike': userlike,
                 'coords': coords,
@@ -103,15 +103,14 @@ function likeme(id) {
         var data = snapshot.val();
         var liked = false;
         var index;
-        var arrayl = firebase.database().ref('images/' + id + "/userlike");
         console.log(liked);
         for (var i = 0; i < (data.userlike.length - 1); i++) {
-            console.log(data.userlike[i]);
-            console.log(liked);
+            console.log(data.userlike[i].key);
+            index = data.userlike[i].key;
             if (data.userlike[i] == account.User) {
                 liked = true;
                 console.log(liked);
-                index = i;
+                index = data.userlike[i].key;
             }
         }
         if (liked) {
@@ -122,7 +121,8 @@ function likeme(id) {
                 'like': likes
             });
             $("#" + id + " .likes").eq(0).text(likes);
-        } else if (liked != false) {
+            firebase.database().ref('images/' + id + "/userlike/" + index).remove();
+        } else if (liked == false) {
             console.log("you liked me");
             console.log(liked);
             var likes = (data.like + 1);
@@ -131,6 +131,9 @@ function likeme(id) {
                 'like': likes
             });
             $("#" + id + " .likes").eq(0).text(likes);
+            firebase.database().ref('images/' + id + "/userlike").push({
+                'name': account.User
+            })
         }
     });
 }
