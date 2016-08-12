@@ -33,14 +33,6 @@ navigator.geolocation.getCurrentPosition(function(position){
     }
 });
 
-var config = {
-    apiKey: "AIzaSyA1n9MmgGXH8mUX8YCcpj8-tuzDW8Y3wVc",
-    authDomain: "locusimg.firebaseapp.com",
-    databaseURL: "https://locusimg.firebaseio.com",
-    storageBucket: "locusimg.appspot.com",
-};
-firebase.initializeApp(config);
-
 // Create a root reference
 var storageRef = firebase.storage().ref();
 var database = firebase.database().ref('images/');
@@ -96,7 +88,7 @@ database.on('child_added', function(dataRow) {
 	        );
     	}
 });
-
+/*
 function likeme(id) {
     var like = firebase.database().ref('images/' + id);
     like.once('value').then(function(snapshot) {
@@ -131,6 +123,18 @@ function likeme(id) {
                 no: account.User
             })
         }
+    });
+}
+*/
+function likeme(id) {
+    var like = firebase.database().ref('images/' + id);
+    like.once('value').then(function(snapshot) {
+        var data = snapshot.val();
+        var likes = (data.like + 1);
+        like.update({
+            'like': likes
+        });
+        $("#" + id + " .likes").eq(0).text(likes);
     });
 }
 
