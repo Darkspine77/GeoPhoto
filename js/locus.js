@@ -126,9 +126,11 @@ function likeme(id) {
 */
 
 function likeme(id) {
-    firebase.database().ref('users/' + account.User + "/userlike/" + id).push();
     var like = firebase.database().ref('images/' + id);
     var likedimages = firebase.database().ref('users/' + account.User + "/userlike");
+    firebase.database().ref('users/' + account.User + "/userlike/" + id).push({
+        blank: id
+    });
     like.once('value').then(function(snapshot) {
         likedimages.once('value').then(function(snapshot1) {
             var data = snapshot.val();
