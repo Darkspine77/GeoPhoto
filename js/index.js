@@ -35,6 +35,7 @@ function signup(){
     firebase.database().ref('users/' + Username).set({
         'Username': Username,
         'Password': Password,
+        'userlike': blank
     });
     firebase.database().ref('users/' + Username + '/userlike').set({
         'blank': blank
