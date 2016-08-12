@@ -127,8 +127,8 @@ function likeme(id) {
                 'like': likes
             });
             $("#" + id + " .likes").eq(0).text(likes);
-            firebase.database().ref('images/' + id + "/userlike/" + data.userlike.length).push({
-                no : account.User
+            firebase.database().ref('images/' + id + "/userlike").push({
+                no: account.User
             })
         }
     });
