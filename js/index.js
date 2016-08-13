@@ -45,7 +45,7 @@ function signup(){
 function login(){
     var Username = $("#username").val();
     var Password = $("#password").val();
-    if(Username != "" || Password != "") {
+    if(Username != "" && Password != "") {
         var passCheck = null
         firebase.database().ref('users/' + Username).on('value', function(snapshot) {
             if(snapshot.val() != null){
