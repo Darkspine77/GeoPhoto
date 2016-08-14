@@ -5,37 +5,30 @@ body {
 }
 
 .holder {
-    max-width: 900px;
+    max-width: 880px;
     margin: 0px auto;
     padding: 0px;
     margin-top: 100px;
-    min-height: 300px;
+    margin-bottom: 100px;
     background-color: rgb(255,160, 0);
-    border-radius: 25px;
+    border-radius: 50px;
+    height: 350px;
 }
 
 .company {
-    display: inline;
+    display: inline-block;
     float: left;
     max-width: 500px;
+    margin: 0px auto;
     padding: 50px;
-    margin: 0px;
-    padding: 0px;
-    padding: 75px;
-    padding-top: 50px;
-    padding-right: 0px;
 }
 
 .login {
-    display: inline;
+    display: inline-block;
     float: right;
     max-width: 400px;
+    margin: 0px auto;
     padding: 50px;
-    margin: 0px;
-    padding: 0px;
-    padding-top: 50px;
-    padding-left: 75px;
-    padding-right: 75px;
     text-align: center;
 }
 
