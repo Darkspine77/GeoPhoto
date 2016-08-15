@@ -8,27 +8,28 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans|Scope+One" rel="stylesheet">
         <title>Locus</title>
     </head>
-    <body id="body" style="background-image: url(pictures/img6.jpg)">
+  <body id="body">
+  <div id="div1" class="div1" style="background-image: url(pictures/img6.jpg)"> </div>
         <div class="holder">
             <div class="company">
                 <img src="pictures/white text.png"/>
                 <h3>Pictures taken around you.</h3>
             </div>
             <div class="login">
-                <!--<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div> -->
+                <!--<div class="g-signin2" data-onsuccess="onS  ignIn" data-theme="dark"></div> -->
                 <input id="username" type="text" placeholder="Username"></input><br>
                 <input id ="password" type="password" placeholder="Password"></input><br>
                 <p id="alert"></p>
                 <button onClick="login()" class="button" id="login">Login</button>
+                <button onClick="music()" class="button2"><p>music</p></button>
                 <button onClick ="signup()" class="button" id="signup">Sign Up for Locus</button>
                 <p id="member">Already a member? <span class="pointer" style="color: blue;" onclick="member(false)">Log in</span></p>
                 <p id="notamember">New to Locus? <span class="pointer" style="color: blue;" onclick="member(true)">Signup</span></p>
-                <embed src="StarWars.mp3" autostart="true" loop="true" width="0" height="0"></embed>
             </div>
         </div>
         <script src="https://apis.google.com/js/platform.js" async defer></script>
         <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
         <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-        <script src='js/index.js'></script>
+                <script src='js/index.js'></script>
     </body>
 </html>

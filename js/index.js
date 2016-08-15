@@ -76,28 +76,36 @@ function login(){
 var stuff = ["pictures/img1.jpg", "pictures/img2.jpg", "pictures/img3.jpg", "pictures/img4.jpg", "pictures/img5.jpg", "pictures/img6.jpg"];
 var counter = 0;
 
-var pleasework = setInterval(function() {
+setInterval(function() {
     function delay(){
-        $("#body").css("background-image",'url(' + stuff[counter] + ')');
-        }
-        if (counter > (stuff.length - 1) ) {
-        counter = 0;
-        }
-setTimeout(delay,1500)
-counter++;
-}, 5000);
-var music = false;
-
-function play(){
-    if (music = false){
-        $('body').append('<embed src="Battle!Zinnia.mp3" autostart="false" loop="true" width="0" height="0"> </embed>')
-        music = true
+        $(".div1").css("background-image",'url(' + stuff[counter] + ')');
+        counter++;
     }
-    if (music = true){
-        music = false
+    if (counter > (stuff.length - 1) ) {
+        counter = 0;
+    }
+    $(".div1").fadeOut(1500);
+    $(".div1").fadeIn(1500);
+    setTimeout(delay,1500)
+}, 5000);
+var x = new Audio("StarWars.mp3")
+function play(){
+x.play()
+}
+function pause(){
+x.pause()
+}
+count = 0
+function music(){
+    if (count == 0){
+        play()
+        count = 1
+    }
+    else{
+        pause()
+        count = 0
     }
 }
-
 function member(a) {
     if (a) {
         $("#member").css("display",'block');
