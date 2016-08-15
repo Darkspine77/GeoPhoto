@@ -141,7 +141,8 @@ $('#plus').click(function() {
     }
 })
 
-function refresh(){
+
+$('#refresh').click(function() {
     $('.locus').text('');
     navigator.geolocation.getCurrentPosition(function(position){
     lat = position.coords.latitude;
@@ -179,4 +180,4 @@ function refresh(){
     		})
     	}
     })
-}
+})
