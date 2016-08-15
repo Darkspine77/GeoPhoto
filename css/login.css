@@ -19,7 +19,15 @@ body {
   background-size: cover;
 
 }
-
+.button2{
+  right: 0;
+  margin-left: 80%;
+  margin-bottom: 10%; 
+  display:block; 
+  width:50px;
+  height:50px;
+  background: url("http://findicons.com/files/icons/2777/sound_and_audio_for_android/64/1_speaker_off.png") no-repeat center;
+}
 .holder {
     max-width: 880px;
     margin: 0px auto;
