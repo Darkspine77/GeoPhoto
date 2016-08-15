@@ -26,7 +26,7 @@ function signup(){
     var blank = "blank";
     var Username = $("#username").val();
     var Password = $("#password").val();
-    if (Username.length > 8 && Password.length > 8) {
+    if (Username.length > 3 && Password.length > 8) {
         firebase.database().ref('users/' + Username).set({
             'Username': Username,
             'Password': Password,
