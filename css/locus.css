@@ -35,6 +35,14 @@ h1 {
     float:left;
     margin-top: 16px;
     margin-left: 16px;
+          -webkit-transition: 1s ease-in-out;
+  -moz-transition: 1s ease-in-out;
+  transition: 1s ease-in-out;
+}
+#plus:hover{
+          -ms-transform: rotate(360deg); 
+    -webkit-transform: rotate(360deg); 
+    transform: rotate(360deg);
 }
 
 #refresh {
@@ -64,7 +72,16 @@ h1 {
     font-family: 'Open Sans', sans-serif;
     font-weight: lighter;
 }
-
+#refresh{
+      -webkit-transition: 1s ease-in-out;
+  -moz-transition: 1s ease-in-out;
+  transition: 1s ease-in-out;
+}
+#refresh:hover{
+      -ms-transform: rotate(360deg); 
+    -webkit-transform: rotate(360deg); 
+    transform: rotate(360deg);
+}
 .center {
     margin: 0px auto;
 }

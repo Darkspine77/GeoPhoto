@@ -56,18 +56,20 @@ body {
 .company {
     display: inline-block;
     float: left;
-    max-width: 500px;
+    width:50%;
     margin: 0px auto;
     padding: 50px;
+    box-sizing: border-box;
 }
 
 .login {
     display: inline-block;
     float: right;
-    max-width: 400px;
+    width:50%;
     margin: 0px auto;
     padding: 50px;
     text-align: center;
+    box-sizing: border-box;
 }
 
 img {
@@ -86,6 +88,17 @@ input {
     border: 0px;
     padding: 10px;
     border-radius: 5px;
+      -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+}
+input:focus {
+    -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 .button {
