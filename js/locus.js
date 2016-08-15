@@ -220,4 +220,3 @@ function refresh() {
         }
     });
 }
-refresh()
