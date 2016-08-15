@@ -91,7 +91,7 @@ database.on('child_added', function(dataRow) {
   	withinLon = row.coords[1] < (lon + .00723) && row.coords[1] > (lon - .00723);
 
     	if(withinLat && withinLon) {
-	        $(".locus").append(
+	        $(".locus").prepend(
 	            '<div id="' + dataRow.key + '" class="photo"><div class="info"><h2 class="user">' + row.name + '|' + row.locus +
 	            '</h2><button type="button" name="button" class="button" onclick="likeme(' + "'" + dataRow.key + "'" +
 	            ')">like</button><h2 class="likes">' + row.like +
