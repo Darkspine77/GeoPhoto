@@ -186,7 +186,7 @@ $('#plus').click(function() {
     }
 })
 
-$('#refresh').click(function() {
+function refresh() {
     $('.locus').html('');
     navigator.geolocation.getCurrentPosition(function(position){
     lat = position.coords.latitude;
@@ -204,21 +204,20 @@ $('#refresh').click(function() {
             }
         });
     }
-});
+    });
     database.on('child_added', function(dataRow) {
-    //getting raw values
-    var row = dataRow.val();
-    //adding to the div
-    withinLat = row.coords[0] < (lat + .00723) && row.coords[0] > (lat - .00723);
-    withinLon = row.coords[1] < (lon + .00723) && row.coords[1] > (lon - .00723);
-
+        //getting raw values
+        var row = dataRow.val();
+        //adding to the div
+        withinLat = row.coords[0] < (lat + .00723) && row.coords[0] > (lat - .00723);
+        withinLon = row.coords[1] < (lon + .00723) && row.coords[1] > (lon - .00723);
         if(withinLat && withinLon) {
-            $(".locus").append(
-                '<div id="' + dataRow.key + '" class="photo"><div class="info"><h2 class="user">' + row.name + '|' + row.locus +
-                '</h2><button type="button" name="button" class="button" onclick="likeme(' + "'" + dataRow.key + "'" +
+            $(".locus").prepend(
+                '<div id="' + dataRow.key + '" class="photo"><div class="info"><h2 class="user">' + row.name + '|' + row.locus + '</h2><button type="button" name="button" class="button" onclick="likeme(' + "'" + dataRow.key + "'" +
                 ')">like</button><h2 class="likes">' + row.like +
                 '</h2></div><div class="center"><img src="' + row.image + '" class="width"/></div></div>'
             );
         }
-});
-})
+    });
+}
+refresh()
