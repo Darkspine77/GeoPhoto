@@ -186,7 +186,7 @@ $('#plus').click(function() {
     }
 })
 
-function refresh() {
+function refresh(){
     $('.locus').html('');
     navigator.geolocation.getCurrentPosition(function(position){
     lat = position.coords.latitude;
@@ -198,7 +198,7 @@ function refresh() {
     function geocodeLatLng(geocoder) {
         var latlng = {lat: parseFloat(coords[0]), lng: parseFloat(coords[1])};
         geocoder.geocode({'location': latlng}, function(results, status) {
-            if (status === 'OK') {
+            if (status === 'OK') {  
                 var locinfo = results[1].formatted_address.split(',')
                 area = locinfo[0];
             }
