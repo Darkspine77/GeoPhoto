@@ -94,12 +94,12 @@ setInterval(function() {
 }, 5000);
 var x = new Audio("Battle!Zinnia.mp3")
 function play(){
-x.play()
-$(".button2").css("background-image",'url(http://findicons.com/files/icons/770/token_dark/64/sound.png)');
+    x.play()
+    $(".button2").css("background-image",'url(http://findicons.com/files/icons/770/token_dark/64/sound.png)');
 }
 function pause(){
-x.pause()
-$(".button2").css("background-image",'url(http://findicons.com/files/icons/2777/sound_and_audio_for_android/64/1_speaker_off.png)');
+    x.pause()
+    $(".button2").css("background-image",'url(http://findicons.com/files/icons/2777/sound_and_audio_for_android/64/1_speaker_off.png)');
 }
 count = 0
 function music(){

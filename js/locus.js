@@ -4,17 +4,14 @@ var coords = [];
 var location;
 var area;
 
-
 function guid() {
- function s4() {
-   return Math.floor((1 + Math.random()) * 0x10000)
-     .toString(16)
-     .substring(1);
- }
- return s4() + s4() + s4() + s4() + s4() + s4() + s4() + s4();
+    function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    }
+    return s4() + s4() + s4() + s4() + s4() + s4() + s4() + s4();
 }
-
-
 
 account = localStorage.getItem('_account');
 if(account == null){
@@ -39,7 +36,6 @@ navigator.geolocation.getCurrentPosition(function(position){
             if (status === 'OK') {
                 var locinfo = results[1].formatted_address.split(',')
                 area = locinfo[0];
-
             }
         });
     }
@@ -55,14 +51,14 @@ function upload() {
     var like = 0;
     if($('#file2').val() != ""){
         var file = document.getElementById("file2").files[0];
-        var ranId = guid()
+        var ranId = guid();
         // We can use the 'name' property on the File API to get our file name
         var uploadTask = storageRef.child('images/' + ranId + file.name).put(file);
         uploadTask.on('state_changed', function(snapshot){
         }, function(error) {
         }, function() {
             var img = uploadTask.snapshot.downloadURL;
-            database.push({
+            firebase.database().ref('images/').push({
                 'name': name,
                 'locus': area,
                 'coords': coords,
@@ -83,60 +79,39 @@ function upload() {
     }
 }
 
-database.on('child_added', function(dataRow) {
-	//getting raw values
-	var row = dataRow.val();
-  	//adding to the div
-  	withinLat = row.coords[0] < (lat + .00723) && row.coords[0] > (lat - .00723);
-  	withinLon = row.coords[1] < (lon + .00723) && row.coords[1] > (lon - .00723);
-
-    	if(withinLat && withinLon) {
-	        $(".locus").prepend(
-	            '<div id="' + dataRow.key + '" class="photo"><div class="info"><h2 class="user">' + row.name + '|' + row.locus +
-	            '</h2><button type="button" name="button" class="button" onclick="likeme(' + "'" + dataRow.key + "'" +
-	            ')">like</button><h2 class="likes">' + row.like +
-	            '</h2></div><div class="center"><img src="' + row.image + '" class="width"/></div></div>'
-	        );
-    	}
-});
-/*
-function likeme(id) {
-    var like = firebase.database().ref('images/' + id);
-    like.once('value').then(function(snapshot) {
-        var data = snapshot.val();
-        var liked = false;
-        var index;
-        for (var i = 0; i < (data.userlike.length - 1); i++) {
-            if (data.userlike[i] == account.User) {
-                liked = true;
-                index = i;
+firebase.database().ref('/images').on('value', function(a) {
+    var b = a.val();
+    console.log(b);
+    for (k in b) {
+        firebase.database().ref('/images/' + k).on('value', function(d) {
+            var c = d.val();
+            withinLat = c.coords[0] < (lat + .00723) && c.coords[0] > (lat - .00723);
+            withinLon = c.coords[1] < (lon + .00723) && c.coords[1] > (lon - .00723);
+            if(withinLat && withinLon) {
+                $(".locus").prepend(
+                    '<div id="' + d.key + '" class="photo"><div class="info"><h2 class="user">' + c.name + '|' + c.locus +
+                    '</h2><button type="button" name="button" class="button" onclick="likeme(' + "'" + d.key + "'" +
+                    ')">like</button><h2 class="likes">' + c.like +
+                    '</h2></div><div class="center"><img src="' + c.image + '" class="width"/></div></div>'
+                );
             }
-        }
-        if (liked) {
-            console.log("you liked it already");
-            console.log(liked);
-            var likes = (data.like - 1);
-            like.update({
-                'like': likes
-            });
-            $("#" + id + " .likes").eq(0).text(likes);
-            firebase.database().ref('images/' + id + "/userlike/" + index).remove();
-        } else if (liked == false) {
-            console.log("you liked me");
-            console.log(liked);
-            var likes = (data.like + 1);
-            var you = data.userlike[i];
-            like.update({
-                'like': likes
-            });
-            $("#" + id + " .likes").eq(0).text(likes);
-            firebase.database().ref('images/' + id + "/userlike").push({
-                no: account.User
-            })
-        }
-    });
-}
-*/
+        })
+    }
+})
+
+database.on('child_added', function(dataRow) {
+    var row = dataRow.val();
+    withinLat = row.coords[0] < (lat + .00723) && row.coords[0] > (lat - .00723);
+    withinLon = row.coords[1] < (lon + .00723) && row.coords[1] > (lon - .00723);
+    if(withinLat && withinLon) {
+        $(".locus").prepend(
+            '<div id="' + dataRow.key + '" class="photo"><div class="info"><h2 class="user">' + row.name + '|' + row.locus +
+            '</h2><button type="button" name="button" class="button" onclick="likeme(' + "'" + dataRow.key + "'" +
+            ')">like</button><h2 class="likes">' + row.like +
+            '</h2></div><div class="center"><img src="' + row.image + '" class="width"/></div></div>'
+        );
+    }
+});
 
 function likeme(id) {
     var like = firebase.database().ref('images/' + id);
@@ -187,7 +162,7 @@ $('#plus').click(function() {
 })
 
 function refresh(){
-    $('.locus').html('');
+    $('.locus').text('');
     navigator.geolocation.getCurrentPosition(function(position){
     lat = position.coords.latitude;
     lon = position.coords.longitude;
@@ -198,25 +173,30 @@ function refresh(){
     function geocodeLatLng(geocoder) {
         var latlng = {lat: parseFloat(coords[0]), lng: parseFloat(coords[1])};
         geocoder.geocode({'location': latlng}, function(results, status) {
-            if (status === 'OK') {  
+            if (status === 'OK') {
                 var locinfo = results[1].formatted_address.split(',')
                 area = locinfo[0];
             }
         });
     }
     });
-    database.on('child_added', function(dataRow) {
-        //getting raw values
-        var row = dataRow.val();
-        //adding to the div
-        withinLat = row.coords[0] < (lat + .00723) && row.coords[0] > (lat - .00723);
-        withinLon = row.coords[1] < (lon + .00723) && row.coords[1] > (lon - .00723);
-        if(withinLat && withinLon) {
-            $(".locus").prepend(
-                '<div id="' + dataRow.key + '" class="photo"><div class="info"><h2 class="user">' + row.name + '|' + row.locus + '</h2><button type="button" name="button" class="button" onclick="likeme(' + "'" + dataRow.key + "'" +
-                ')">like</button><h2 class="likes">' + row.like +
-                '</h2></div><div class="center"><img src="' + row.image + '" class="width"/></div></div>'
-            );
-        }
-    });
+    firebase.database().ref('/images').on('value', function(a) {
+        var b = a.val();
+        console.log(b);
+        for (k in b) {
+            firebase.database().ref('/images/' + k).on('value', function(d) {
+                var c = d.val();
+                withinLat = c.coords[0] < (lat + .00723) && c.coords[0] > (lat - .00723);
+                withinLon = c.coords[1] < (lon + .00723) && c.coords[1] > (lon - .00723);
+                if(withinLat && withinLon) {
+                    $(".locus").prepend(
+                        '<div id="' + d.key + '" class="photo"><div class="info"><h2 class="user">' + c.name + '|' + c.locus +
+                        '</h2><button type="button" name="button" class="button" onclick="likeme(' + "'" + d.key + "'" +
+                        ')">like</button><h2 class="likes">' + c.like +
+                        '</h2></div><div class="center"><img src="' + c.image + '" class="width"/></div></div>'
+        	        );
+                }
+    		})
+    	}
+    })
 }
