@@ -2,6 +2,9 @@ body {
   font-family: 'Scope One', sans-serif;
   color: white;
   margin: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .holder {
@@ -67,6 +70,9 @@ input {
     border: 0px;
     padding: 10px;
     border-radius: 5px;
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
 }
 
 #signup {
@@ -77,6 +83,9 @@ input {
     border: 0px;
     padding: 10px;
     border-radius: 5px;
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
 }
 
 #member {
