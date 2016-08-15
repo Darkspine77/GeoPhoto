@@ -18,32 +18,32 @@ if(account == null){
     document.location.href = "index.html";
 }
 localStorage.removeItem('_account');
-//decodes a string data encoded using base-64
 account = atob(account);
-//parses to Object the JSON string
 account = JSON.parse(account);
-//do what you need with the Object
-navigator.geolocation.getCurrentPosition(function(position){
-    lat = position.coords.latitude;
-    lon = position.coords.longitude;
-    coords.push(lat);
-    coords.push(lon);
-    var geocoder = new google.maps.Geocoder;
-    geocodeLatLng(geocoder);
-    function geocodeLatLng(geocoder) {
-        var latlng = {lat: parseFloat(coords[0]), lng: parseFloat(coords[1])};
-        geocoder.geocode({'location': latlng}, function(results, status) {
-            if (status === 'OK') {
-                var locinfo = results[1].formatted_address.split(',')
-                area = locinfo[0];
-            }
-        });
-    }
-});
 
-// Create a root reference
+function locator() {
+    navigator.geolocation.getCurrentPosition(function(position){
+        lat = position.coords.latitude;
+        lon = position.coords.longitude;
+        coords.push(lat);
+        coords.push(lon);
+        var geocoder = new google.maps.Geocoder;
+        geocodeLatLng(geocoder);
+        function geocodeLatLng(geocoder) {
+            var latlng = {lat: parseFloat(coords[0]), lng: parseFloat(coords[1])};
+            geocoder.geocode({'location': latlng}, function(results, status) {
+                if (status === 'OK') {
+                    var locinfo = results[1].formatted_address.split(',')
+                    area = locinfo[0];
+                }
+            });
+        }
+    });
+}
+
+locator();
+
 var storageRef = firebase.storage().ref();
-var database = firebase.database().ref('images/');
 var click = false;
 
 function upload() {
@@ -78,29 +78,6 @@ function upload() {
         $('#input').text('You must add a location and upload an image first');
     }
 }
-
-database.on('child_added', function(dataRow) {
-    $('.locus').text('');
-    firebase.database().ref('/images').on('value', function(a) {
-        var b = a.val();
-        console.log(b);
-        for (k in b) {
-            firebase.database().ref('/images/' + k).on('value', function(d) {
-                var c = d.val();
-                withinLat = c.coords[0] < (lat + .00723) && c.coords[0] > (lat - .00723);
-                withinLon = c.coords[1] < (lon + .00723) && c.coords[1] > (lon - .00723);
-                if(withinLat && withinLon) {
-                    $(".locus").prepend(
-                        '<div id="' + d.key + '" class="photo"><div class="info"><h2 class="user">' + c.name + '|' + c.locus +
-                        '</h2><button type="button" name="button" class="button" onclick="likeme(' + "'" + d.key + "'" +
-                        ')">like</button><h2 class="likes">' + c.like +
-                        '</h2></div><div class="center"><img src="' + c.image + '" class="width"/></div></div>'
-        	        );
-                }
-    		})
-    	}
-    })
-});
 
 function likeme(id) {
     var like = firebase.database().ref('images/' + id);
@@ -150,26 +127,9 @@ $('#plus').click(function() {
     }
 })
 
-
 $('#refresh').click(function() {
     $('.locus').text('');
-    navigator.geolocation.getCurrentPosition(function(position){
-    lat = position.coords.latitude;
-    lon = position.coords.longitude;
-    coords.push(lat);
-    coords.push(lon);
-    var geocoder = new google.maps.Geocoder;
-    geocodeLatLng(geocoder);
-    function geocodeLatLng(geocoder) {
-        var latlng = {lat: parseFloat(coords[0]), lng: parseFloat(coords[1])};
-        geocoder.geocode({'location': latlng}, function(results, status) {
-            if (status === 'OK') {
-                var locinfo = results[1].formatted_address.split(',')
-                area = locinfo[0];
-            }
-        });
-    }
-    });
+    locator();
     firebase.database().ref('/images').on('value', function(a) {
         var b = a.val();
         console.log(b);
@@ -190,3 +150,27 @@ $('#refresh').click(function() {
     	}
     })
 })
+
+firebase.database().ref('/images').on('child_added', function(asdf) {
+    $('.locus').text('');
+    locator();
+    firebase.database().ref('/images').on('value', function(a) {
+        var b = a.val();
+        console.log(b);
+        for (k in b) {
+            firebase.database().ref('/images/' + k).on('value', function(d) {
+                var c = d.val();
+                withinLat = c.coords[0] < (lat + .00723) && c.coords[0] > (lat - .00723);
+                withinLon = c.coords[1] < (lon + .00723) && c.coords[1] > (lon - .00723);
+                if(withinLat && withinLon) {
+                    $(".locus").prepend(
+                        '<div id="' + d.key + '" class="photo"><div class="info"><h2 class="user">' + c.name + '|' + c.locus +
+                        '</h2><button type="button" name="button" class="button" onclick="likeme(' + "'" + d.key + "'" +
+                        ')">like</button><h2 class="likes">' + c.like +
+                        '</h2></div><div class="center"><img src="' + c.image + '" class="width"/></div></div>'
+        	        );
+                }
+    		})
+    	}
+    })
+});
