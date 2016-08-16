@@ -45,7 +45,6 @@ var click = false;
 firebase.database().ref('/images').on('child_changed', function(asdf) {
     $('.locus').text('');
     var b = asdf.val();
-    console.log(b);
     for (k in b) {
         firebase.database().ref('/images/' + k).on('value', function(d) {
             var c = d.val();
@@ -165,7 +164,6 @@ function clean() {
     });
     firebase.database().ref('/images').on('value', function(a) {
         var b = a.val();
-        console.log(b);
         for (k in b) {
             firebase.database().ref('/images/' + k).on('value', function(d) {
                 var c = d.val();
@@ -205,7 +203,6 @@ $(document).ready(function() {
     });
     firebase.database().ref('/images').on('value', function(a) {
         var b = a.val();
-        console.log(b);
         for (k in b) {
             firebase.database().ref('/images/' + k).on('value', function(d) {
                 var c = d.val();

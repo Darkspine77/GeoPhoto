@@ -38,7 +38,7 @@ function signup(){
         $('#alert').text("");
         login();
     } else {
-        $('#alert').text("Username and Password needs to be more than 8 characters.");
+        alert("Username must be more than 3 characters and the Password needs to be more than 8 characters.");
     }
 }
 
@@ -55,12 +55,8 @@ function login(){
                         User: Username,
                         Pass: Password
                     };
-                    console.log(account)
-                    //converts to JSON string the Object
                     account = JSON.stringify(account);
-                    //creates a base-64 encoded ASCII string
                     account = btoa(account);
-                    //save the encoded accout to web storage
                     localStorage.setItem('_account', account);
                     setTimeout(function(){
                     $('body').addClass('loaded');
@@ -69,11 +65,11 @@ function login(){
                     document.location.href = "locus.html";
                 }
             } else {
-                $('#alert').text("Username and/or Password is incorrect.");
+                alert("Username and/or Password is incorrect.");
             }
         });
     } else {
-        $('#alert').text("You didn't enter in the field(s).");
+        alert("You didn't enter in the field(s).");
     }
 }
 

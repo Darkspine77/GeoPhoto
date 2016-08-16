@@ -148,17 +148,6 @@ input:focus {
     display: none;
 }
 
-#alert {
-    font-family: 'Open Sans', sans-serif;
-    margin: 0px auto;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    font-size: .75em;
-    max-width: 225px;
-    color: red;
-}
-
-
 #loader-wrapper {
     position: fixed;
     top: 0;
