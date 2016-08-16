@@ -63,6 +63,24 @@ firebase.database().ref('/images').on('child_changed', function(asdf) {
 });
 
 function upload() {
+    coords = [];
+    navigator.geolocation.getCurrentPosition(function(position){
+        lat = position.coords.latitude;
+        lon = position.coords.longitude;
+        coords.push(lat);
+        coords.push(lon);
+        var geocoder = new google.maps.Geocoder;
+        geocodeLatLng(geocoder);
+        function geocodeLatLng(geocoder) {
+            var latlng = {lat: parseFloat(coords[0]), lng: parseFloat(coords[1])};
+            geocoder.geocode({'location': latlng}, function(results, status) {
+                if (status === 'OK') {
+                    var locinfo = results[1].formatted_address.split(',')
+                    area = locinfo[0];
+                }
+            });
+        }
+    });
     var name = account.User;
     var like = 0;
     if($('#file2').val() != ""){
@@ -146,6 +164,7 @@ $('#plus').click(function() {
 
 function clean() {
     $('.locus').text('');
+    coords = [];
     navigator.geolocation.getCurrentPosition(function(position){
         lat = position.coords.latitude;
         lon = position.coords.longitude;
@@ -185,6 +204,7 @@ function clean() {
 
 $(document).ready(function() {
     $('.locus').text('');
+    coords = [];
     navigator.geolocation.getCurrentPosition(function(position){
         lat = position.coords.latitude;
         lon = position.coords.longitude;
