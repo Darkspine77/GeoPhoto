@@ -110,6 +110,7 @@ function music(){
         count = 0
     }
 }
+
 function member(a) {
     if (a) {
         $("#member").css("display",'block');
