@@ -181,7 +181,7 @@ function clean() {
             });
         }
     });
-    firebase.database().ref('/images').on('value', function(a) {
+    firebase.database().ref('/images').onbe('value').then(function(a) {
         $('.locus').text('');
         var b = a.val();
         for (k in b) {
