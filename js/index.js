@@ -93,11 +93,11 @@ var x = new Audio("Battle!Zinnia.mp3");
 
 function play(){
     x.play()
-    $(".button2").css("background-image",'url(http://findicons.com/files/icons/770/token_dark/64/sound.png)');
+    $(".button2").attr("src",'images/pause.png');
 }
 function pause(){
     x.pause()
-    $(".button2").css("background-image",'url(http://findicons.com/files/icons/2777/sound_and_audio_for_android/64/1_speaker_off.png)');
+    $(".button2").attr("src",'images/play.png');
 }
 count = 0
 function music(){
