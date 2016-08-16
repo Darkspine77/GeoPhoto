@@ -94,6 +94,7 @@ input {
     -o-transition: 0.5s ease-in-out;
     transition: 0.5s ease-in-out;
 }
+
 input:focus {
     -webkit-transform: scale(1.2);
     -moz-transform: scale(1.2);
@@ -156,6 +157,7 @@ input:focus {
     height: 100%;
     z-index: 1000;
 }
+
 #loader {
     display: block;
     position: relative;
