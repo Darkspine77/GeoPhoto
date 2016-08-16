@@ -109,7 +109,6 @@ function likeme(id) {
             }
         })
     });
-    clean();
 }
 
 $("#cancel").click(function() {
