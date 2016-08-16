@@ -39,6 +39,27 @@ navigator.geolocation.getCurrentPosition(function(position){
     }
 });
 
+setInterval(function {
+    firebase.database().ref('/images').on('value', function(a) {
+        var b = a.val();
+        for (k in b) {
+            firebase.database().ref('/images/' + k).on('value', function(d) {
+                var c = d.val();
+                withinLat = c.coords[0] < (lat + .00723) && c.coords[0] > (lat - .00723);
+                withinLon = c.coords[1] < (lon + .00723) && c.coords[1] > (lon - .00723);
+                if(withinLat && withinLon) {
+                    $(".locus").prepend(
+                        '<div id="' + d.key + '" class="photo"><div class="info"><h2 class="user">' + c.name + '|' + c.locus +
+                        '</h2><button type="button" name="button" class="button" onclick="likeme(' + "'" + d.key + "'" +
+                        ')">like</button><h2 class="likes">' + c.like +
+                        '</h2></div><div class="center"><img src="' + c.image + '" class="width"/></div></div>'
+        	        );
+                }
+    		})
+    	}
+    })
+}, 1000)
+
 var storageRef = firebase.storage().ref();
 var click = false;
 
