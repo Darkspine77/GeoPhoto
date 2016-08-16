@@ -92,7 +92,9 @@ setInterval(function() {
     $(".div1").fadeIn(1500);
     setTimeout(delay,1500)
 }, 5000);
-var x = new Audio("Battle!Zinnia.mp3")
+
+var x = new Audio("Battle!Zinnia.mp3");
+
 function play(){
     x.play()
     $(".button2").css("background-image",'url(http://findicons.com/files/icons/770/token_dark/64/sound.png)');
@@ -127,8 +129,9 @@ function member(a) {
         $('#alert').text("");
     }
 }
+
 $(document).ready(function() {
-    
+
     setTimeout(function(){
         $('body').addClass('loaded');
         $('h1').css('color','#222222')
