@@ -40,6 +40,7 @@ navigator.geolocation.getCurrentPosition(function(position){
 });
 
 setInterval(function() {
+    $('.locus').text('');
     firebase.database().ref('/images').on('value', function(a) {
         var b = a.val();
         for (k in b) {
