@@ -80,11 +80,10 @@ function upload() {
 }
 
 function likeme(id) {
-    var like = firebase.database().ref('images/' + id);
     var likedimages = firebase.database().ref('users/' + account.User + "/userlike");
     var liked = false;
-    like.once('value').then(function(snapshot) {
-        likedimages.once('value').then(function(snapshot1) {
+    firebase.database().ref('images/' + id).on('value', function(snapshot) {
+        firebase.database().ref('users/' + account.User + "/userlike").on('value', function(snapshot1) {
             var data = snapshot.val();
             var almost = snapshot1.val();
             for (i in almost) {
@@ -109,6 +108,7 @@ function likeme(id) {
             }
         })
     });
+    clean();
 }
 
 $("#cancel").click(function() {
