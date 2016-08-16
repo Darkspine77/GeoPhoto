@@ -46,7 +46,7 @@ locator();
 var storageRef = firebase.storage().ref();
 var click = false;
 
-firebase.database().ref('/images').on('child_added', function(asdf) {
+firebase.database().ref('/images').on('child_changed', function(asdf) {
     $('.locus').text('');
     locator();
     var b = asdf.val();
