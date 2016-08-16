@@ -150,6 +150,8 @@ function clean() {
     })
 }
 
+clean();
+
 firebase.database().ref('/images').on('child_added', function(asdf) {
     $('.locus').text('');
     locator();
