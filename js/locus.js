@@ -91,7 +91,6 @@ function upload() {
     } else {
         $('#input').text('You must upload an image.');
     }
-    clean();
 }
 
 function likeme(id) {
