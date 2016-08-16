@@ -108,10 +108,10 @@ function upload() {
         $('#geo').val("");
         $('#file1').val("");
         $('#file2').val("");
-        clean();
     } else {
         $('#input').text('You must upload an image.');
     }
+    clean();
 }
 
 function likeme(id) {
