@@ -80,9 +80,11 @@ function upload() {
 }
 
 function likeme(id) {
+    var like = firebase.database().ref('images/' + id);
+    var likedimages = firebase.database().ref('users/' + account.User + "/userlike");
     var liked = false;
-    firebase.database().ref('images/' + id).on('value', function(snapshot) {
-        firebase.database().ref('users/' + account.User + "/userlike").on('value', function(snapshot1) {
+    like.once('value').then(function(snapshot) {
+        likedimages.once('value').then(function(snapshot1) {
             var data = snapshot.val();
             var almost = snapshot1.val();
             for (i in almost) {
@@ -92,14 +94,14 @@ function likeme(id) {
             }
             if (liked == false) {
                 var likes = (data.like + 1);
-                firebase.database().ref('images/' + id).update({
+                like.update({
                     'like': likes
                 });
                 $("#" + id + " .likes").eq(0).text(likes);
                 firebase.database().ref('users/' + account.User + "/userlike/" + id).push({blank: id});
             } else if (liked) {
                 var likes = (data.like - 1);
-                firebase.database().ref('images/' + id).update({
+                like.update({
                     'like': likes
                 });
                 $("#" + id + " .likes").eq(0).text(likes);
@@ -149,8 +151,6 @@ function clean() {
     	}
     })
 }
-
-clean();
 
 firebase.database().ref('/images').on('child_added', function(asdf) {
     $('.locus').text('');
