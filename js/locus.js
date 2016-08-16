@@ -80,7 +80,6 @@ function upload() {
 }
 
 function likeme(id) {
-    var likedimages = firebase.database().ref('users/' + account.User + "/userlike");
     var liked = false;
     firebase.database().ref('images/' + id).on('value', function(snapshot) {
         firebase.database().ref('users/' + account.User + "/userlike").on('value', function(snapshot1) {
@@ -93,14 +92,14 @@ function likeme(id) {
             }
             if (liked == false) {
                 var likes = (data.like + 1);
-                like.update({
+                firebase.database().ref('images/' + id).update({
                     'like': likes
                 });
                 $("#" + id + " .likes").eq(0).text(likes);
                 firebase.database().ref('users/' + account.User + "/userlike/" + id).push({blank: id});
             } else if (liked) {
                 var likes = (data.like - 1);
-                like.update({
+                firebase.database().ref('images/' + id).update({
                     'like': likes
                 });
                 $("#" + id + " .likes").eq(0).text(likes);
