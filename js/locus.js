@@ -39,7 +39,7 @@ navigator.geolocation.getCurrentPosition(function(position){
     }
 });
 
-setInterval(function {
+setInterval(function() {
     firebase.database().ref('/images').on('value', function(a) {
         var b = a.val();
         for (k in b) {
