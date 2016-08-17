@@ -89,7 +89,7 @@ setInterval(function() {
     setTimeout(delay,1500)
 }, 5000);
 
-var x = new Audio("Battle!Zinnia.mp3");
+var x = new Audio("song.mp3");
 
 function play(){
     x.play()
