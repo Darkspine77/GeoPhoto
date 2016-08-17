@@ -49,7 +49,7 @@ firebase.database().ref('/images').on('child_added', function(a) {
             withinLon = c.coords[1] < (lon + .00723) && c.coords[1] > (lon - .00723);
             if(withinLat && withinLon) {
                 $(".locus").prepend(
-                    '<div id="' + d.key + '" class="photo"><div class="info"><h2 class="user">' + c.name + '|' + c.locus +
+                    '<div id="' + d.key + '" class="photo"><div class="info"><h2 class="user">' + c.name + '|' + "Bowling Green" +
                     '</h2><button type="button" name="button" class="button" onclick="likeme(' + "'" + d.key + "'" +
                     ')">like</button><h2 class="likes">' + c.like +
                     '</h2></div><div class="center"><img src="' + c.image + '" class="width"/></div></div>'
@@ -191,7 +191,7 @@ function clean() {
                 withinLon = c.coords[1] < (lon + .00723) && c.coords[1] > (lon - .00723);
                 if(withinLat && withinLon) {
                     $(".locus").prepend(
-                        '<div id="' + d.key + '" class="photo"><div class="info"><h2 class="user">' + c.name + '|' + c.locus +
+                        '<div id="' + d.key + '" class="photo"><div class="info"><h2 class="user">' + c.name + '|' + "Bowling Green" +
                         '</h2><button type="button" name="button" class="button" onclick="likeme(' + "'" + d.key + "'" +
                         ')">like</button><h2 class="likes">' + c.like +
                         '</h2></div><div class="center"><img src="' + c.image + '" class="width"/></div></div>'
