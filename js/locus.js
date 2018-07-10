@@ -39,26 +39,6 @@ navigator.geolocation.getCurrentPosition(function(position){
     }
 });
 
-firebase.database().ref('/images').on('child_added', function(a) {
-    $('.locus').text('');
-    var b = a.val();
-    for (k in b) {
-        firebase.database().ref('/images/' + k).on('value', function(d) {
-            var c = d.val();
-            withinLat = c.coords[0] < (lat + .00723) && c.coords[0] > (lat - .00723);
-            withinLon = c.coords[1] < (lon + .00723) && c.coords[1] > (lon - .00723);
-            if(withinLat && withinLon) {
-                $(".locus").prepend(
-                    '<div id="' + d.key + '" class="photo"><div class="info"><h2 class="user">' + c.name + '|' + c.locus +
-                    '</h2><button type="button" name="button" class="button" onclick="likeme(' + "'" + d.key + "'" +
-                    ')">like</button><h2 class="likes">' + c.like +
-                    '</h2></div><div class="center"><img src="' + c.image + '" class="width"/></div></div>'
-                );
-            }
-        })
-    }
-})
-
 var storageRef = firebase.storage().ref();
 var click = false;
 
@@ -80,68 +60,36 @@ function upload() {
                 }
             });
         }
-    });
-    var name = account.User;
-    var like = 0;
-    if($('#file2').val() != ""){
-        var file = document.getElementById("file2").files[0];
-        var ranId = guid();
-        // We can use the 'name' property on the File API to get our file name
-        var uploadTask = storageRef.child('images/' + ranId + file.name).put(file);
-        uploadTask.on('state_changed', function(snapshot){
-        }, function(error) {
-        }, function() {
-            var img = uploadTask.snapshot.downloadURL;
-            firebase.database().ref('images/').push({
-                'name': name,
-                'locus': area,
-                'coords': coords,
-                'image': img,
-                'like': like
+        var name = account.User;
+        if($('#file2').val() != ""){
+            var file = document.getElementById("file2").files[0];
+            var ranId = guid();
+            // We can use the 'name' property on the File API to get our file name
+            var uploadTask = storageRef.child('images/' + ranId + file.name).put(file);
+            uploadTask.on('state_changed', function(snapshot){
+            }, function(error) {
+            }, function() {
+                var img = uploadTask.snapshot.downloadURL;
+                firebase.database().ref('images/').push({
+                    'name': name,
+                    'locus': area,
+                    'coords': coords,
+                    'image': img
+                });
+                loadImages()
             });
-        });
-        $('.upload').animate({
-            marginLeft: '-=520px'}, 520
-        )
-        click = false;
-        $('#name').val("");
-        $('#geo').val("");
-        $('#file1').val("");
-        $('#file2').val("");
-    } else {
-        $('#input').text('You must upload an image.');
-    }
-}
-
-function likeme(id) {
-    var like = firebase.database().ref('images/' + id);
-    var likedimages = firebase.database().ref('users/' + account.User + "/userlike");
-    var liked = false;
-    like.once('value').then(function(snapshot) {
-        likedimages.once('value').then(function(snapshot1) {
-            var data = snapshot.val();
-            var almost = snapshot1.val();
-            for (i in almost) {
-                if (i == id) {
-                    liked = true;
-                }
-            }
-            if (liked == false) {
-                var likes = (data.like + 1);
-                like.update({
-                    'like': likes
-                });
-                $("#" + id + " .likes").eq(0).text(likes);
-                firebase.database().ref('users/' + account.User + "/userlike/" + id).push({blank: id});
-            } else if (liked) {
-                var likes = (data.like - 1);
-                like.update({
-                    'like': likes
-                });
-                $("#" + id + " .likes").eq(0).text(likes);
-                firebase.database().ref('users/' + account.User + "/userlike/" + id).remove();
-            }
-        })
+            $('.upload').animate({
+                marginLeft: '-=520px'}, 520
+            )
+            click = false;
+            $('#name').val("");
+            $('#geo').val("");
+            $('#file1').val("");
+            $('#file2').val("");
+            console.log("Image uploaded")
+        } else {
+            $('#input').text('You must upload an image.');
+        }
     });
 }
 
@@ -162,7 +110,6 @@ $('#plus').click(function() {
 })
 
 function clean() {
-    $('.locus').text('');
     coords = [];
     navigator.geolocation.getCurrentPosition(function(position){
         lat = position.coords.latitude;
@@ -181,64 +128,34 @@ function clean() {
             });
         }
     });
-    firebase.database().ref('/images').on('value', function(a) {
-        $('.locus').text('');
-        var b = a.val();
-        for (k in b) {
-            firebase.database().ref('/images/' + k).on('value', function(d) {
-                var c = d.val();
-                withinLat = c.coords[0] < (lat + .00723) && c.coords[0] > (lat - .00723);
-                withinLon = c.coords[1] < (lon + .00723) && c.coords[1] > (lon - .00723);
-                if(withinLat && withinLon) {
-                    $(".locus").prepend(
-                        '<div id="' + d.key + '" class="photo"><div class="info"><h2 class="user">' + c.name + '|' + c.locus +
-                        '</h2><button type="button" name="button" class="button" onclick="likeme(' + "'" + d.key + "'" +
-                        ')">like</button><h2 class="likes">' + c.like +
-                        '</h2></div><div class="center"><img src="' + c.image + '" class="width"/></div></div>'
-        	        );
-                }
-    		})
-    	}
-    })
+    loadImages()      
 }
 
 $(document).ready(function() {
-    $('.locus').text('');
-    coords = [];
+    coords = []
     navigator.geolocation.getCurrentPosition(function(position){
         lat = position.coords.latitude;
         lon = position.coords.longitude;
         coords.push(lat);
         coords.push(lon);
         var geocoder = new google.maps.Geocoder;
-        geocodeLatLng(geocoder);
-        function geocodeLatLng(geocoder) {
-            var latlng = {lat: parseFloat(coords[0]), lng: parseFloat(coords[1])};
-            geocoder.geocode({'location': latlng}, function(results, status) {
-                if (status === 'OK') {
-                    var locinfo = results[1].formatted_address.split(',')
-                    area = locinfo[0];
-                }
-            });
-        }
+        loadImages()    
     });
-    firebase.database().ref('/images').once('value').then(function(a) {
-        $('.locus').text('');
-        var b = a.val();
-        for (k in b) {
-            firebase.database().ref('/images/' + k).on('value', function(d) {
-                var c = d.val();
-                withinLat = c.coords[0] < (lat + .00723) && c.coords[0] > (lat - .00723);
-                withinLon = c.coords[1] < (lon + .00723) && c.coords[1] > (lon - .00723);
-                if(withinLat && withinLon) {
-                    $(".locus").prepend(
-                        '<div id="' + d.key + '" class="photo"><div class="info"><h2 class="user">' + c.name + '|' + c.locus +
-                        '</h2><button type="button" name="button" class="button" onclick="likeme(' + "'" + d.key + "'" +
-                        ')">like</button><h2 class="likes">' + c.like +
-                        '</h2></div><div class="center"><img src="' + c.image + '" class="width"/></div></div>'
-        	        );
-                }
-    		})
-    	}
-    })
 })
+
+function loadImages(){
+    $('.locus').text('');
+    firebase.database().ref('/images/').once('value', function(d) {
+        for(i in d.val()){
+            var c = d.val()[i]
+            withinLat = c.coords[0] < (lat + .00723) && c.coords[0] > (lat - .00723);
+            withinLon = c.coords[1] < (lon + .00723) && c.coords[1] > (lon - .00723);
+            if(withinLat && withinLon) {
+                $(".locus").prepend(
+                    '<div class="photo"><div class="info"><h2 class="user">' + c.name + '|' + c.locus +
+                    '</h2></div><div class="center"><img src="' + c.image + '" class="width"/></div></div>'
+                );
+            }
+        }
+    })    
+}
